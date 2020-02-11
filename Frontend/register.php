@@ -2,38 +2,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Registration system PHP and MySQL</title>
+  <title>Register an Account</title>
   <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
   <div class="header">
   	<h2>Register</h2>
+  	<p>Enter your information below to sign up for an account</p>
   </div>
 	
-  <form method="post" action="register.php">
+  <form method="post" action="register.php" class="form">
   	<?php include('errors.php'); ?>
-  	<div class="input-group">
-  	  <label>Username</label>
-  	  <input type="text" name="username" value="<?php echo $username; ?>">
-  	</div>
-  	<div class="input-group">
-  	  <label>Email</label>
-  	  <input type="email" name="email" value="<?php echo $email; ?>">
-  	</div>
-  	<div class="input-group">
-  	  <label>Password</label>
-  	  <input type="password" name="password_1">
-  	</div>
-  	<div class="input-group">
-  	  <label>Confirm password</label>
-  	  <input type="password" name="password_2">
-  	</div>
-  	<div class="input-group">
-  	  <button type="submit" class="btn" name="reg_user">Register</button>
-  	</div>
-  	<p>
-  		Already a member? <a href="login.php">Sign in</a>
-  	</p>
+
+  	  <label>Username:</label>
+  	  <input type="text" name="username" placeholder="Example: JohnDoe95" value="<?php echo $username; ?>">
+
+  	  <label>Email:</label>
+  	  <input type="email" name="email" placeholder="Example: johndoe@gmail.com" value="<?php echo $email; ?>">
+
+  	  <label>Password:</label>
+  	  <input type="password" name="password_1" placeholder="Enter your password here">
+
+  	  <label>Confirm password:</label>
+  	  <input type="password" name="password_2" placeholder="Confirm your password here">
+
+  	  <button type="submit" style="margin: 0 auto;" class="signupBtn" name="reg_user" onclick="checkRegisterCredentials()">Register</button>
+
   </form>
+  <script src="javascript.js"></script>
 </body>
 </html>
