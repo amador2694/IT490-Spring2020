@@ -67,6 +67,9 @@ input:focus {
   transition: .2s;
   cursor: pointer;
 }
+#registerButtonId{
+  margin: 0 auto;
+}
 .loginBtn {
   width: 150px;
   height: 50px;

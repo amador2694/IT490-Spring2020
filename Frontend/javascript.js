@@ -6,88 +6,70 @@ function checkLoginCredentials(){
 
     if (loginPassword !== "" && loginUsername !== ""){
         sendLoginCredentials(loginUsername, loginPassword);
+    }else{
+        alert("Please fill in all required fields");
     }
 }
-
 // This function sends a AJAX request for login
 function sendLoginCredentials(username, password){
-
-    var httpReq = createRequestObject();
+    let httpReq = new XMLHttpRequest();
     httpReq.onreadystatechange = function(){
         if(this.readyState == 4 && this.status == 200){
-
             document.getElementById("loginButtonId").innerHTML = "Login";
-
             if(this.responseText == true){
+                alert("Logged in successfully");
                 window.location = "index.php";
             }else{
-                window.location = "loginRegister.html";
+                alert("Problem logging in.  Please try again");
+                window.location = "index.php";
             }
-
         }else{
             document.getElementById("loginButtonId").innerHTML = "Loading...";
         }
     }
-    httpReq.open("GET", "../php/functionCases.php?type=Login&username=" + username + "&password=" + password);
+    httpReq.open("GET", "functions.php?type=Login&username=" + username + "&password=" + password);
     httpReq.send(null);
 }
 
 //  Form validation for Register
 function checkRegisterCredentials(){
-
     //  Taking Form input
-    var firstname = document.getElementById("id_firstname").value;
-    var lastname = document.getElementById("id_lastname").value;
-    var username = document.getElementById("id_username").value;
-    var email = document.getElementById("id_email").value;
-    var password = document.getElementById("id_password").value;
-    var confirmPassword = document.getElementById("id_confirm_password").value;
-
+    let firstname = document.getElementById("id_firstname").value;
+    let lastname = document.getElementById("id_lastname").value;
+    let username = document.getElementById("id_username").value;
+    let email = document.getElementById("id_email").value;
+    let password = document.getElementById("id_password").value;
+    let confirmPassword = document.getElementById("id_confirm_password").value;
 
     if (firstname !== "" && lastname !== "" && username !== "" && email !== "" && password !== "" && confirmPassword !== ""){
-        sendRegisterCredentials(firstname, lastname, username, email, password);
+       if (password == confirmPassword) {
+           sendRegisterCredentials(firstname, lastname, username, email, password);
+       }else{
+           alert("Password and Confirm Password must match");
+       }
     }else{
-        alert("Information not good");
+        alert("Please fill out all required information");
     }
-
 }
 
 //  This function sends a AJAX request for Register new user
 function sendRegisterCredentials(firstname, lastname, username, email, password){
-
-    var httpReq = createRequestObject();
+    let httpReq = new XMLHttpRequest();
     httpReq.onreadystatechange = function(){
         if(this.readyState == 4 && this.status == 200){
-
             document.getElementById("registerButtonId").innerHTML = "Register";
             //  var response = JSON.parse(this.responseText);
             if(this.responseText == true){
                 alert("User Registered");
+                window.location = "index.php";
             }else{
-                alert("Problems registering a new user");
+                alert("Problems registering you as a new user.  Please try again");
             }
         }else{
             document.getElementById("registerButtonId").innerHTML = "Loading...";
         }
     }
-    httpReq.open("GET", "../php/functionCases.php?type=RegisterNewUser&username=" + username + "&password=" + password + "&firstname=" + firstname + "&lastname=" + lastname + "&email=" + email);
+    httpReq.open("GET", "functions.php?type=Register&username=" + username +
+        "&password=" + password + "&firstname=" + firstname + "&lastname=" + lastname + "&email=" + email);
     httpReq.send(null);
-}
-//  This function will create an object for http request
-function createRequestObject(){
-    var ajaxSender;
-    try {
-        ajaxSender = new XMLHttpRequest();
-    }catch (e) {
-        try {
-            ajaxSender = new ActiveXObject("Msxml2.XMLHTTP");
-        }catch (e) {
-            try{
-                ajaxSender = new ActiveXObject("Microsoft.XMLHTTP");
-            }catch (e){
-                alert("Your browser broke!");
-            }
-        }
-    }
-    return ajaxSender;
 }
