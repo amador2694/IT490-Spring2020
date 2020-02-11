@@ -8,6 +8,7 @@
   <div class="header">
   	<h2>Register</h2>
   	<p>Enter your information below to sign up for an account</p>
+      <p>Note: all fields are required</p>
   </div>
 	
   <form class="form">

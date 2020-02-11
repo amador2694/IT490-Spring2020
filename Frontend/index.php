@@ -11,6 +11,7 @@ session_start();
   <div class="header">
   	<h2>Login</h2>
   	<p>Login with your account credentials or sign up for an account below</p>
+      <p>Note: all fields are required</p>
   </div>
 	 
   <form class="form">

@@ -16,6 +16,7 @@ function sendLoginCredentials(username, password){
     httpReq.onreadystatechange = function(){
         if(this.readyState == 4 && this.status == 200){
             document.getElementById("loginButtonId").innerHTML = "Login";
+
             if(this.responseText == true){
                 alert("Logged in successfully");
                 window.location = "index.php";
@@ -58,7 +59,7 @@ function sendRegisterCredentials(firstname, lastname, username, email, password)
     httpReq.onreadystatechange = function(){
         if(this.readyState == 4 && this.status == 200){
             document.getElementById("registerButtonId").innerHTML = "Register";
-            //  var response = JSON.parse(this.responseText);
+
             if(this.responseText == true){
                 alert("User Registered");
                 window.location = "index.php";
