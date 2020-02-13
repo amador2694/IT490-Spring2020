@@ -4,7 +4,7 @@ function checkLoginCredentials(){
     let loginUsername = document.getElementById('username_login').value;
     let loginPassword = document.getElementById('password_login').value;
 
-    if (loginPassword !== "" && loginUsername !== ""){
+    if (loginPassword !== "" || loginUsername !== ""){
         sendLoginCredentials(loginUsername, loginPassword);
     }else{
         alert("Please fill in all required fields");
@@ -42,7 +42,7 @@ function checkRegisterCredentials(){
     let password = document.getElementById("id_password").value;
     let confirmPassword = document.getElementById("id_confirm_password").value;
 
-    if (firstname !== "" && lastname !== "" && username !== "" && email !== "" && password !== "" && confirmPassword !== ""){
+    if (firstname !== "" || lastname !== "" || username !== "" || email !== "" || password !== "" || confirmPassword !== ""){
        if (password == confirmPassword) {
            sendRegisterCredentials(firstname, lastname, username, email, password);
        }else{
