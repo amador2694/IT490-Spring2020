@@ -19,7 +19,7 @@ function sendLoginCredentials(username, password){
 
             if(this.responseText == true){
                 alert("Logged in successfully");
-                window.location = "index.php";
+                window.location = "success.html";
             }else{
                 alert("Problem logging in.  Please try again");
             }
@@ -61,7 +61,7 @@ function sendRegisterCredentials(firstname, lastname, username, email, password)
 
             if(this.responseText == true){
                 alert("User Registered");
-                window.location = "index.php";
+                window.location = "index.html";
             }else{
                 alert("Problems registering you as a new user.  Please try again");
             }
