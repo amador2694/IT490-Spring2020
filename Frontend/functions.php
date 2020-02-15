@@ -2,7 +2,6 @@
 require_once('../rabbitmqphp_example/path.inc');
 require_once('../rabbitmqphp_example/get_host_info.inc');
 require_once('../rabbitmqphp_example/rabbitMQLib.inc');
-require_once('../rabbitmqphp_example/rabbitMQ_db.ini');
 
 //  This function starts session
 session_start();
