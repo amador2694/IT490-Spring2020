@@ -22,12 +22,11 @@ function sendLoginCredentials(username, password){
                 window.location = "index.php";
             }else{
                 alert("Problem logging in.  Please try again");
-                window.location = "index.php";
             }
         }else{
             document.getElementById("loginButtonId").innerHTML = "Loading...";
         }
-    }
+    };
     httpReq.open("GET", "functions.php?type=Login&username=" + username + "&password=" + password);
     httpReq.send(null);
 }
@@ -69,7 +68,7 @@ function sendRegisterCredentials(firstname, lastname, username, email, password)
         }else{
             document.getElementById("registerButtonId").innerHTML = "Loading...";
         }
-    }
+    };
     httpReq.open("GET", "functions.php?type=Register&username=" + username +
         "&password=" + password + "&firstname=" + firstname + "&lastname=" + lastname + "&email=" + email);
     httpReq.send(null);

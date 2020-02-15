@@ -2,6 +2,7 @@
 require_once('../rabbitmqphp_example/path.inc');
 require_once('../rabbitmqphp_example/get_host_info.inc');
 require_once('../rabbitmqphp_example/rabbitMQLib.inc');
+require_once('../rabbitmqphp_example/rabbitMQ_db.ini');
 
 //  This function starts session
 session_start();
@@ -51,10 +52,10 @@ function register($firstname, $lastname, $username, $email, $password)
     $request = array();
 
     $request['type'] = "Register";
-    $request['username'] = $username;
-    $request['password'] = $password;
     $request['firstname'] = $firstname;
     $request['lastname'] = $lastname;
+    $request['username'] = $username;
+    $request['password'] = $password;
     $request['email'] = $email;
 
     $returnedValue = createClientRequest($request);
