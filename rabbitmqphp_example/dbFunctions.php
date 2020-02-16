@@ -21,19 +21,20 @@
 		if($result){
 			if($result->num_rows == 0){
 				return false;
-			}else{
-				while ($row = $result->fetch_assoc()){
-					$salt = $row['salt'];
-					$h_password = hashPassword($password, $salt);
-					if ($row['h_password'] == $h_password){
-						return true; 
-					}else{
-						return false;
-					}
-				}
-			}
+			}//else{
+			//	while ($row = $result->fetch_assoc()){
+				//	$salt = $row['salt'];
+				//	$h_password = hashPassword($password, $salt);
+				//	if ($row['h_password'] == $h_password){
+				//		return true; 
+				//	}else{
+				//		return false;
+				//	}
+			//	}
 		}
-	}
+		return true; 
+		}
+	
 	
 	function checkUsername($username){
 	
@@ -55,7 +56,7 @@ function checkEmail($email){
 	
 	$connection = dbConnection();
 	
-	$check_email = "SELECT * FROM user WHERE email = '$email' "; 
+	$check_email = "SELECT * FROM users WHERE email = '$email' "; 
 	$check_result = $connection->query($check_email); 
 	
 	if($check_result){
@@ -71,13 +72,29 @@ function get_credentials($email){
 	
 	$connection = dbConnection();
 	
-	$credentials_query = "SELECT username FROM user WHERE email = '$email'";
+	$credentials_query = "SELECT username FROM users WHERE email = '$email'";
 	$credentials_query_result = $connection->query($credentials_query);
 	
 	$row = $credentials_query_result->fetch_assoc(); 
 	$user = $row['username']; 
 	return $user; 
 }
+
+function register($username, $email, $password, $firstname, $lastname){
+
+	$connection = dbConnection(); 
+
+//	$salt = randomString(29); 
+
+//	$h_password = hashPassword($password, $salt); 
+
+	$newuser_query = "INSERT INTO users (username, email, firstname, lastname, password) VALUES ('$username', '$email', '$firstname', '$lastname', '$password')"; 
+
+	$result = $connection->query($newuser_query); 
+
+	return true; 
+} 
+
 
 	?>
 		
