@@ -31,6 +31,26 @@ function sendLoginCredentials(username, password){
     httpReq.send(null);
 }
 
+function logout(){
+    let httpReq = new XMLHttpRequest();
+    httpReq.onreadystatechange = function(){
+        if(this.readyState == 4 && this.status == 200){
+            document.getElementById("logoutButtonId").innerHTML = "Logout";
+
+            if(this.responseText == true){
+                alert("User successfully logged out");
+                window.location = "index.html";
+            }else{
+                alert("Problem logging out user.  Please try again");
+            }
+        }else{
+            document.getElementById("loginButtonId").innerHTML = "Loading...";
+        }
+    };
+    httpReq.open("GET", "functions.php?type=Logout");
+    httpReq.send(null);
+}
+
 //  Form validation for Register
 function checkRegisterCredentials(){
     //  Taking Form input

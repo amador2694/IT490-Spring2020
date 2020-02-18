@@ -9,10 +9,16 @@ session_start();
 $type = $_GET["type"];
 //  determines what kind of data was sent via javascript.js
 switch ($type) {
-    case "Login":                                       //  Login
+    case "Login":
         $username = $_GET["username"];
         $password = $_GET["password"];
         $response = login($username, $password);
+        echo $response;
+        break;
+
+    case "Logout":
+        session_destroy();
+        $response = true;
         echo $response;
         break;
 

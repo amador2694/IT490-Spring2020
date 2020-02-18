@@ -30,7 +30,7 @@
   	  <label>Confirm password:</label>
   	  <input type="password" name="password_2" id="id_confirm_password" placeholder="Confirm your password here">
 
-  	  <button type="button" class="signupBtn" id="registerButtonId" name="reg_user" onclick="checkRegisterCredentials()">Register</button>
+  	  <button type="submit" class="signupBtn" id="registerButtonId" name="reg_user" onclick="checkRegisterCredentials()">Register</button>
 
   </form>
   <script src="javascript.js"></script>

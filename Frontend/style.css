@@ -70,6 +70,9 @@ input:focus {
 #registerButtonId{
   margin: 0 auto;
 }
+#logoutButtonId{
+  margin: 0 auto;
+}
 .loginBtn {
   width: 150px;
   height: 50px;
@@ -77,6 +80,7 @@ input:focus {
   border: 2px solid #E82E44;
   font-size: 1.3rem;
   color: #E82E44;
+  display: block;
   margin-bottom: 30px;
   transition: .2s;
 }
