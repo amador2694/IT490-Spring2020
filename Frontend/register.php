@@ -1,11 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <title>Register an Account</title>
   <link rel="stylesheet" type="text/css" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" rel="stylesheet">
+
 </head>
 <body>
   <div class="header">
+      <ul class="topnav">
+          <li><a class="active" href="index.html">Home</a></li>
+          <li><a href="search.php">Search</a></li>
+          <li><a href="forum.php">Forum</a></li>
+          <li><a href="leaderboard.php">Leaderboard</a></li>
+      </ul>
   	<h2>Register</h2>
   	<p>Enter your information below to sign up for an account</p>
       <p style="text-decoration: underline">Note: all fields are required</p>
