@@ -18,13 +18,13 @@
                 <a class="nav-link" href="#">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Search</a>
+                <a class="nav-link" href="search.php">Search</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Forums</a>
+                <a class="nav-link" href="forum.php">Forums</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Leaderboards</a>
+                <a class="nav-link" href="leaderboard.php">Leaderboards</a>
             </li>
         </ul>
         <ul class="navbar-nav ml-auto mr-1">
@@ -45,7 +45,7 @@
     <div class="jumbotron My_jumbotron text-center">
         <img alt="A group of pokemon" class="img-fluid" src="https://www.popmythology.com/wp-content/uploads/2014/11/13715545605551.png">
         <h1>Welcome to Pokeplace!</h1>
-        <p>A place to search for, discuss, and simulate battles with Pokemon!<br>  This site includes:<br>
+        <p class="lead">A place to search for, discuss, and simulate battles with Pokemon!<br>  This site includes:<br>
         <div id="homepage_list">
             <ul>
                 <li>A robust search engine of all Pokemon up to Generation 7</li>
@@ -54,10 +54,10 @@
                 <li>And leaderboards to rank the top competitors of those battles</li>
             </ul>
         </div>
-        <p>Sign up for a free account below!</p>
+        <p class="lead">Sign up for a free account below!</p>
     </div>
     <div class="text-center">
-        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#loginmodal">Login In</button>
+        <button type="button" class="btn btn-outline-primary btn-lg" data-toggle="modal" data-target="#loginmodal">Login In</button>
         <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#registermodal">Sign Up!</button>
     </div>
 
@@ -65,25 +65,25 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Login</h5>
+                    <h2 class="modal-title" id="exampleModalLabel">Login</h2>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true" style="color: white">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
                     <form>
-                        <div class="username-group">
+                        <div class="form-padding username-group">
                             <label for="username_login">Username:</label>
                             <input type="text" class="form-control" id="username_login" aria-describedby="emailHelp">
                         </div>
-                        <div class="password-group">
+                        <div class="form-padding password-group">
                             <label for="password_login">Password:</label>
                             <input type="password" class="form-control" id="password_login">
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" onclick="checkLoginCredentials()">Submit</button>
+                    <button type="button" id="loginButtonId" class="btn btn-primary btn-lg" onclick="checkLoginCredentials()">Submit</button>
                 </div>
             </div>
         </div>
@@ -94,14 +94,14 @@
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 class="modal-title" id="exampleModalLabel">Register</h3>
+                    <h2 class="modal-title" id="exampleModalLabel">Register</h2>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true" style="color: white">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
                     <form>
-                        <div class="name-group form-row">
+                        <div class="form-padding name-group form-row">
                             <div class="col">
                                 <label for="id_firstname">First Name:</label>
                                 <input type="text" class="form-control" id="id_firstname" aria-describedby="emailHelp">
@@ -111,15 +111,15 @@
                                 <input type="text" class="form-control" id="id_lastname" aria-describedby="emailHelp">
                             </div>
                         </div>
-                        <div class="username-group">
+                        <div class="form-padding username-group">
                             <label for="id_username">Username:</label>
                             <input type="text" class="form-control" id="id_username" aria-describedby="emailHelp">
                         </div>
-                        <div class="email-group">
+                        <div class="form-padding email-group">
                             <label for="id_email">Email:</label>
                             <input type="email" class="form-control" id="id_email" aria-describedby="emailHelp">
                         </div>
-                        <div class="password-group form-row">
+                        <div class="form-padding password-group form-row">
                             <div class="col">
                                 <label for="id_password">Password:</label>
                                 <input type="password" class="form-control" id="id_password" aria-describedby="emailHelp">
@@ -132,7 +132,7 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" onclick="checkRegisterCredentials()">Submit</button>
+                    <button type="button" id="registerButtonId" class="btn btn-danger btn-lg" onclick="checkRegisterCredentials()">Submit</button>
                 </div>
             </div>
         </div>

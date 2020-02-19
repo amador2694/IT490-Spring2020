@@ -20,7 +20,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="search.php">Search</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" href="forum.php">Forums</a>
             </li>
             <li class="nav-item">
@@ -30,7 +30,7 @@
         <ul class="navbar-nav ml-auto mr-1">
             <?php
             if (isset($_SESSION['username'])){
-                echo "<li class='nav-item active'>
+                echo "<li class='nav-item'>
                 <a class='nav-link' href='profile.php'>Profile <i class='far fa-address-card'></i></a>
             </li>";
             }else {
@@ -41,10 +41,11 @@
     </div>
 </nav>
 
+
 <button type="button" class="loginBtn" name="logout_user" id="logoutButtonId" onclick="logout()">Logout</button>
 
 
 
 <script src="javascript.js"></script>
 </body>
-</html><?php
+</html>

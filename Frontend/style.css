@@ -67,9 +67,12 @@ html, body{
   border: none;
   color: white;
 }
-.form-control:focus{
-  background-color: #575656;
-  color: white;
+  .form-control:focus{
+    background-color: #181818;
+    color: white;
+  }
+.form-padding{
+  padding-bottom: 10px;
 }
 nav{
   background-color: #3b3b3c;
