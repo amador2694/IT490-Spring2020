@@ -42,9 +42,9 @@ function login($username, $password)
 
     $returnedValue = createClientRequest($request);
 
-    if ($returnedValue == 1) {
+    if ($returnedValue == true) {
         $_SESSION["username"] = $username;
-        $_SESSION["logged"] = true;
+        $_SESSION["loggedIn"] = true;
     } else {
         session_destroy();
     }

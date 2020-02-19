@@ -19,7 +19,7 @@ function sendLoginCredentials(username, password){
 
             if(this.responseText == true){
                 alert("Logged in successfully");
-                window.location = "success.html";
+                window.location = "profile.php";
             }else{
                 alert("Problem logging in.  Please try again");
             }
@@ -38,8 +38,8 @@ function logout(){
             document.getElementById("logoutButtonId").innerHTML = "Logout";
 
             if(this.responseText == true){
-                alert("User successfully logged out");
-                window.location = "index.html";
+                alert("Logged out successfully");
+                window.location = "index.php";
             }else{
                 alert("Problem logging out user.  Please try again");
             }
@@ -80,8 +80,8 @@ function sendRegisterCredentials(firstname, lastname, username, email, password)
             document.getElementById("registerButtonId").innerHTML = "Register";
 
             if(this.responseText == true){
-                alert("User Registered");
-                window.location = "index.html";
+                alert("Registered successfully!  You may now login with your new credentials");
+                window.location = "index.php";
             }else{
                 alert("Problems registering you as a new user.  Please try again");
             }
