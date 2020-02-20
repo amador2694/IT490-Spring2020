@@ -1,3 +1,7 @@
+<?php
+session_start();
+$_SESSION['username'] = "Test";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,8 +34,9 @@
         <ul class="navbar-nav ml-auto mr-1">
          <?php
             if (isset($_SESSION['username'])){
+                $username = $_SESSION['username'];
             echo "<li class='nav-item'>
-                <a class='nav-link' href='profile.php'>Profile <i class='far fa-address-card'></i></a>
+                <a class='nav-link' href='profile.php'>$username <i class='far fa-address-card'></i></a>
             </li>";
             }else {
                 echo "<button type=\"button\" class=\"btn btn-primary btn-lg\" data-toggle=\"modal\" data-target=\"#loginmodal\">Login In</button>";
@@ -56,7 +61,7 @@
         </div>
         <p class="lead">Sign up for a free account below!</p>
     </div>
-    <div class="text-center">
+    <div style="margin-bottom: 20px;" class="text-center">
         <button type="button" class="btn btn-outline-primary btn-lg" data-toggle="modal" data-target="#loginmodal">Login In</button>
         <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#registermodal">Sign Up!</button>
     </div>

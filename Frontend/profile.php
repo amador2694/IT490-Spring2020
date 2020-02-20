@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,15 +31,16 @@
             </li>
         </ul>
         <ul class="navbar-nav ml-auto mr-1">
-            <?php
+         <?php
             if (isset($_SESSION['username'])){
-                echo "<li class='nav-item active'>
-                <a class='nav-link' href='profile.php'>Profile <i class='far fa-address-card'></i></a>
+                $username = $_SESSION['username'];
+            echo "<li class='nav-item'>
+                <a class='nav-link' href='profile.php'>$username <i class='far fa-address-card'></i></a>
             </li>";
             }else {
                 echo "<button type=\"button\" class=\"btn btn-primary btn-lg\" data-toggle=\"modal\" data-target=\"#loginmodal\">Login In</button>";
             }
-            ?>
+        ?>
         </ul>
     </div>
 </nav>
@@ -44,7 +48,10 @@
 <button type="button" class="loginBtn" name="logout_user" id="logoutButtonId" onclick="logout()">Logout</button>
 
 
-
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/761d96f64b.js" crossorigin="anonymous"></script>
 <script src="javascript.js"></script>
 </body>
-</html><?php
+</html>
