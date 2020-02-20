@@ -35,9 +35,16 @@ $_SESSION['username'] = "Test";
          <?php
             if (isset($_SESSION['username'])){
                 $username = $_SESSION['username'];
-            echo "<li class='nav-item'>
-                <a class='nav-link' href='profile.php'>$username <i class='far fa-address-card'></i></a>
-            </li>";
+            echo "<li class=\"nav-item dropdown\">
+                <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">
+                  Hello, $username
+                </a>
+                <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">
+                  <a class=\"dropdown-item\" href=\"profile.php\">Profile</a>
+                  <div class=\"dropdown-divider\"></div>
+                  <button type=\"button\" style='margin-left:20px;' class=\"btn btn-danger btn-sm\" onclick='logout()'>Logout</button>
+                </div>
+              </li>";
             }else {
                 echo "<button type=\"button\" class=\"btn btn-primary btn-lg\" data-toggle=\"modal\" data-target=\"#loginmodal\">Login In</button>";
             }

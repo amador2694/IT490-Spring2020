@@ -31,26 +31,29 @@ function sendLoginCredentials(username, password){
     httpReq.send(null);
 }
 
-function logout(){
-    let httpReq = new XMLHttpRequest();
-    httpReq.onreadystatechange = function(){
-        if(this.readyState == 4 && this.status == 200){
-            document.getElementById("logoutButtonId").innerHTML = "Logout";
+function logout() {
+    if (confirm('Are you sure you want log out?')) {
+        let httpReq = new XMLHttpRequest();
+        httpReq.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("logoutButtonId").innerHTML = "Logout";
 
-            if(this.responseText == true){
-                alert("Logged out successfully");
-                window.location = "index.php";
-            }else{
-                alert("Problem logging out user.  Please try again");
+                if (this.responseText == true) {
+                    alert("Logged out successfully");
+                    window.location = "index.php";
+                } else {
+                    alert("Problem logging out user.  Please try again");
+                }
+            } else {
+                document.getElementById("loginButtonId").innerHTML = "Loading...";
             }
-        }else{
-            document.getElementById("loginButtonId").innerHTML = "Loading...";
-        }
-    };
-    httpReq.open("GET", "functions.php?type=Logout");
-    httpReq.send(null);
-}
+        };
+        httpReq.open("GET", "functions.php?type=Logout");
+        httpReq.send(null);
+    } else {
 
+    }
+}
 //  Form validation for Register
 function checkRegisterCredentials(){
     //  Taking Form input
