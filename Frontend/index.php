@@ -69,7 +69,6 @@ session_start();
         <p class="lead">Sign up for a free account below!</p>
     </div>
     <div style="margin-bottom: 20px;" class="text-center">
-        <button type="button" id="loginButtonId" class="btn btn-outline-primary btn-lg" data-toggle="modal" data-target="#loginmodal">Login In</button>
         <button type="button" id="registerButtonId" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#registermodal">Sign Up!</button>
     </div>
 
