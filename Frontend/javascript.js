@@ -51,7 +51,7 @@ function logout() {
         httpReq.open("GET", "functions.php?type=Logout");
         httpReq.send(null);
     } else {
-
+        //cancels login request
     }
 }
 //  Form validation for Register

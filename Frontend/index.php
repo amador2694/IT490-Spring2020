@@ -1,6 +1,6 @@
 <?php
 session_start();
-$_SESSION['username'] = "Test";
+//$_SESSION['username'] = "Test";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,7 +12,7 @@ $_SESSION['username'] = "Test";
     <title>Welcome to Pokeplace!</title>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -69,8 +69,8 @@ $_SESSION['username'] = "Test";
         <p class="lead">Sign up for a free account below!</p>
     </div>
     <div style="margin-bottom: 20px;" class="text-center">
-        <button type="button" class="btn btn-outline-primary btn-lg" data-toggle="modal" data-target="#loginmodal">Login In</button>
-        <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#registermodal">Sign Up!</button>
+        <button type="button" id="loginButtonId" class="btn btn-outline-primary btn-lg" data-toggle="modal" data-target="#loginmodal">Login In</button>
+        <button type="button" id="registerButtonId" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#registermodal">Sign Up!</button>
     </div>
 
     <div class="modal fade" id="loginmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
