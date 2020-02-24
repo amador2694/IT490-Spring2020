@@ -1,15 +1,5 @@
 //  Form validation for Login
-function checkLoginCredentials(){
 
-    let loginUsername = document.getElementById('username_login').value;
-    let loginPassword = document.getElementById('password_login').value;
-
-    if (loginPassword !== "" && loginUsername !== ""){
-        sendLoginCredentials(loginUsername, loginPassword);
-    }else{
-        alert("Please fill in all required fields");
-    }
-}
 // This function sends a AJAX request for login
 function sendLoginCredentials(username, password){
     let httpReq = new XMLHttpRequest();
@@ -95,4 +85,102 @@ function sendRegisterCredentials(firstname, lastname, username, email, password)
     httpReq.open("GET", "functions.php?type=Register&username=" + username +
         "&password=" + password + "&firstname=" + firstname + "&lastname=" + lastname + "&email=" + email);
     httpReq.send(null);
+}
+
+function loadCategories() {
+    let httpReq = new XMLHttpRequest();
+    httpReq.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+
+            document.getElementById("categoriesTable").innerHTML = this.responseText;
+        }
+        httpReq.open("GET", "functions.php?type=LoadCategories");
+        httpReq.send(null);
+    }
+}
+function checkCategoryFields(){
+
+    let catName = document.getElementById('category_name').value;
+    let catDesc = document.getElementById('category_desc').value;
+
+    if (catName !== "" && catDesc !== ""){
+        createCategory(catName, catDesc);
+    }else{
+        alert("Please fill in all required fields");
+    }
+}
+function createCategory(catName, catDesc) {
+    let httpReq = new XMLHttpRequest();
+    httpReq.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+
+            if(this.responseText == true){
+                alert("New category created successfully!");
+                window.location = "forum.php";
+            }else{
+                alert("Problems creating new category.  Please try again");
+            }
+
+        }
+        httpReq.open("GET", "functions.php?type=CreateCategory&catName=" + catName + "&catDesc=" + catDesc);
+        httpReq.send(null);
+    }
+}
+function checkTopicFields(){
+
+    let topicName = document.getElementById('topic_name').value;
+    let dropdown = document.getElementById("selectCategory");
+    let topicCategory = dropdown.options[dropdown.selectedIndex].value;
+    let topicDesc = document.getElementById('topic_desc').value;
+
+    if (topicName !== "" && topicDesc !== ""){
+        createTopic(topicName, topicCategory, topicDesc);
+    }else{
+        alert("Please fill in all required fields");
+    }
+}
+function createTopic(topicName, topicCategory, topicDesc) {
+    let httpReq = new XMLHttpRequest();
+    httpReq.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+
+            if(this.responseText == true){
+                alert("New category created successfully!");
+                window.location = "forum.php";
+            }else{
+                alert("Problems creating new category.  Please try again");
+            }
+
+        }
+        httpReq.open("GET", "functions.php?type=CreateCategory&topicName=" + topicName + "&topicCategory=" + topicCategory +  "&topicDesc=" + topicDesc);
+        httpReq.send(null);
+    }
+}
+
+function checkReply(){
+
+    let replyText = document.getElementById('topic_name').value;
+
+    if (topicName !== "" && topicDesc !== ""){
+        createTopic(topicName, topicCategory, topicDesc);
+    }else{
+        alert("Please fill in all required fields");
+    }
+}
+function createTopic(topicName, topicCategory, topicDesc) {
+    let httpReq = new XMLHttpRequest();
+    httpReq.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+
+            if(this.responseText == true){
+                alert("New category created successfully!");
+                window.location = "forum.php";
+            }else{
+                alert("Problems creating new category.  Please try again");
+            }
+
+        }
+        httpReq.open("GET", "functions.php?type=CreateCategory&topicName=" + topicName + "&topicCategory=" + topicCategory +  "&topicDesc=" + topicDesc);
+        httpReq.send(null);
+    }
 }

@@ -31,6 +31,12 @@ switch ($type) {
         $response = register($firstname, $lastname, $username, $email, $password);
         echo $response;
         break;
+
+    case "LoadCategories":
+        $request = "LoadCategories";
+        $response = createClientRequest($request);
+        echo $response;
+        break;
 }
 //  This function will send a login request message to Db through RabbitMQ
 function login($username, $password)

@@ -8,7 +8,7 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="style.css">
-    <title>Leaderboards</title>
+    <title>Forums</title>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
@@ -20,13 +20,13 @@ session_start();
             <li class="nav-item">
                 <a class="nav-link" href="index.php">Home</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" href="search.php">Search</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="forum.php">Forums</a>
             </li>
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="leaderboard.php">Leaderboards</a>
             </li>
         </ul>
@@ -55,12 +55,44 @@ session_start();
 
 
 
+<div class="container">
+    <div id="topicsTable">
+        <table class="table table-hover table-dark">
+            <thead>
+            <tr>
+                <th><span class="tableTitle">Topics</span></th>
+                <th><span class="tableTitle">Date posted</span></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><a href="topic.php?id=' . $row['topic_id'] . '"><span class="categoryTitle">' . $row['topic_title'] . '</span></a></td>
+                <td>' . $row['topic_date'] . '</td>
+            </tr>
+            <tr>
+                <td><a href="topic.php?id=' . $row['topic_id'] . '"><span class="categoryTitle">' . $row['topic_title'] . '</span></td>
+                <td>' . $row['topic_date'] . '</td>
+            </tr>
+            <tr>
+                <td><a href="topic.php?id=' . $row['topic_id'] . '"><span class="categoryTitle">' . $row['topic_title'] . '</span></td>
+                <td>' . $row['topic_date'] . '</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <button type="button" id="registerButtonId" class="btn btn-outline-warning btn-lg" data-toggle="modal" data-target="#topicmodal"><i class="fas fa-edit"></i> Create a New Topic</button>
+</div>
 
-<div class="modal fade" id="loginmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+
+
+
+
+<div class="modal fade" id="topicmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h2 class="modal-title" id="exampleModalLabel">Login</h2>
+                <h2 class="modal-title" id="exampleModalLabel">Create a Topic</h2>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true" style="color: white">&times;</span>
                 </button>
@@ -68,17 +100,25 @@ session_start();
             <div class="modal-body">
                 <form>
                     <div class="form-padding username-group">
-                        <label for="username_login">Username:</label>
-                        <input type="text" class="form-control" id="username_login" aria-describedby="emailHelp">
+                        <label for="category_name">Topic Name:</label>
+                        <input type="text" class="form-control" id="topic_name" aria-describedby="emailHelp">
+                    </div>
+                    <div class="form-padding form-group">
+                        <label for="exampleFormControlSelect1">Choose topic's category</label>
+                        <select class="form-control" id="selectCategory">
+                            <option>General Discussion</option>
+                            <option>Competitive Play</option>
+                            <option>Game Discussion</option>
+                        </select>
                     </div>
                     <div class="form-padding password-group">
-                        <label for="password_login">Password:</label>
-                        <input type="password" class="form-control" id="password_login">
+                        <label for="category_desc">Description:</label>
+                        <textarea class="form-control" id="topic_desc" rows="4"></textarea>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" id="loginButtonId" class="btn btn-primary btn-lg" onclick="checkLoginCredentials()">Submit</button>
+                <button type="button" id="loginButtonId" class="btn btn-warning btn-lg" onclick="checkTopicFields()c()">Submit</button>
             </div>
         </div>
     </div>
@@ -90,3 +130,4 @@ session_start();
 <script src="javascript.js"></script>
 </body>
 </html>
+

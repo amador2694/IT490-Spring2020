@@ -80,3 +80,33 @@ nav{
 .nav-link{
   font-size: 1.4rem;
 }
+
+table{
+  margin-top: 50px;
+}
+.table-dark{
+  background-color: #3b3b3c;
+}
+.categoryTitle{
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+.tableTitle{
+  font-size: 1.5rem;
+  font-weight: bolder;
+  text-decoration: underline;
+}
+thead{
+  text-align: center;
+  background-color: #5a5a5b;
+}
+td{
+  padding: 20px;
+}
+td > a{
+  display: block;
+  color: white;
+}
+td > a:hover{
+  color: #ffcc03;
+}
