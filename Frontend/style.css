@@ -72,7 +72,7 @@ html, body{
     color: white;
   }
 .form-padding{
-  padding-bottom: 10px;
+  padding-bottom: 15px;
 }
 nav{
   background-color: #3b3b3c;
@@ -109,4 +109,17 @@ td > a{
 }
 td > a:hover{
   color: #ffcc03;
+}
+.search-group{
+  color: white;
+  padding: 30px;
+}
+.form-margin-bottom{
+  margin-bottom: 20px;
+}
+#pokemon_search{
+  border: 3px solid #E82E44;
+}
+#hidden_div{
+  display: none;
 }

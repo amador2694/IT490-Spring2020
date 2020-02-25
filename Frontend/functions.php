@@ -54,6 +54,19 @@ switch ($type) {
         $response = createClientRequest($request);
         echo $response;
         break;
+
+    case "Search":
+        $request = array();
+        $request['type'] = "Search";
+        $request['pokedexNum'] = $_GET['topic_id'];
+        $request['name'] = $_GET['topic_id'];
+        $request['pokeType'] = $_GET['topic_id'];
+        $request['ability'] = $_GET['topic_id'];
+        $response = createClientRequest($request);
+        echo $response;
+        break;
+
+
 }
 //  This function will send a login request message to Db through RabbitMQ
 function login($username, $password)
@@ -97,4 +110,9 @@ function createClientRequest($request){
 
     return $response;
 }
+/*
+
+*/
 ?>
+
+

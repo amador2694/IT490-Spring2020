@@ -41,7 +41,7 @@ session_start();
                 <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">
                   <a class=\"dropdown-item\" href=\"profile.php\">Profile</a>
                   <div class=\"dropdown-divider\"></div>
-                  <button type=\"button\" style='margin-left:20px;' class=\"btn btn-danger btn-sm\" onclick='logout()'>Logout</button>
+                  <button type=\"button\" style='margin-left:20px;' id='logoutButtonId' class=\"btn btn-danger btn-sm\" onclick='logout()'>Logout</button>
                 </div>
               </li>";
             }else {
@@ -52,6 +52,23 @@ session_start();
     </div>
 </nav>
 
+<div style="margin-top: 30px;" class="container-fluid">
+    <form class="form-padding search-group text-center">
+        <h2>First, select the parameter you would like to search by:</h2>
+        <select id="search_type" class="form-margin-bottom mr-sm-2 form-control form-control-lg" onchange="showDiv('hidden_div', this)">
+            <option value="0" selected>Search by...</option>
+            <option value="1">Name (Squirtle, Bulbasaur, etc.)</option>
+            <option value="2">Pokedex Number (1,13,25, etc.)</option>
+            <option value="3">Type (Fire, Water, Fairy, etc.)</option>
+            <option value="4">Ability (Flame Body, Magic Guard, etc.)</option>
+        </select>
+        <div id="hidden_div">
+            <label class="lead" for="pokemon_search"><h2>Now, search for Pokemon using your selected parameter below:</h2></label>
+            <input type="text" class="form-margin-bottom form-control form-control-lg" id="pokemon_search" placeholder="Input your search criteria here">
+            <button class="form-margin-bottom btn btn-lg btn-outline-warning" type="button" onclick="checkSearchFields()">Search</button>
+        </div>
+    </form>
+</div>
 
 
 

@@ -42,7 +42,7 @@ $cat_id = $_GET['id'];
                 <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">
                   <a class=\"dropdown-item\" href=\"profile.php\">Profile</a>
                   <div class=\"dropdown-divider\"></div>
-                  <button type=\"button\" style='margin-left:20px;' class=\"btn btn-danger btn-sm\" onclick='logout()'>Logout</button>
+                  <button type=\"button\" style='margin-left:20px;' id='logoutButtonId' class=\"btn btn-danger btn-sm\" onclick='logout()'>Logout</button>
                 </div>
               </li>";
             }else {
@@ -55,7 +55,8 @@ $cat_id = $_GET['id'];
 
 
 
-
+<?php
+echo '
 <div class="container">
     <div id="topicsTable">
         <table class="table table-hover table-dark">
@@ -83,7 +84,8 @@ $cat_id = $_GET['id'];
     </div>
     <button type="button" id="registerButtonId" class="btn btn-outline-warning btn-lg" data-toggle="modal" data-target="#topicmodal"><i class="fas fa-edit"></i> Create a New Topic</button>
 </div>
-
+';
+?>
 
 
 

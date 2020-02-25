@@ -1,4 +1,14 @@
+function checkLoginCredentials(){
+    //  Taking Form input
+    let username = document.getElementById("username_login").value;
+    let password = document.getElementById("password_login").value;
 
+    if (username !== "" && password !== ""){
+        sendLoginCredentials(username, password);
+    }else{
+        alert("Please fill out all required information");
+    }
+}
 function sendLoginCredentials(username, password){
     let httpReq = new XMLHttpRequest();
     httpReq.onreadystatechange = function(){
@@ -33,7 +43,7 @@ function logout() {
                     alert("Problem logging out user.  Please try again");
                 }
             } else {
-                document.getElementById("loginButtonId").innerHTML = "Loading...";
+                document.getElementById("logoutButtonId").innerHTML = "Loading...";
             }
         };
         httpReq.open("GET", "functions.php?type=Logout");
@@ -178,7 +188,6 @@ function createTopic(topicName, topicCategory, topicDesc) {
 }
 
 function checkPostFields(){
-
     let postText = document.getElementById('post_desc').value;
 
     if (postText !== ""){
@@ -203,4 +212,24 @@ function createPost(postText) {
         httpReq.open("GET", "functions.php?type=CreatePost&postText=" + postText);
         httpReq.send(null);
     }
+}function showDiv(divId, element)
+{
+    document.getElementById(divId).style.display = element.value > 0 ? 'block' : 'none';
+}
+function checkSearchFields(){
+    let searchText = document.getElementById('pokemon_search').value;
+    let dropdown = document.getElementById("search_type");
+    let searchType = dropdown.options[dropdown.selectedIndex].value;
+    if (searchText !== ""){
+        searchText.toLowerCase();
+        searchType.toLowerCase();
+        alert(searchType + searchText);
+        createSearch(searchText, searchType);
+    }else{
+        alert("Please fill in all required fields");
+    }
+}
+
+function createSearch() {
+
 }
