@@ -1,3 +1,14 @@
+function checkLoginCredentials(){
+    let username = document.getElementById("username_login").value;
+    let password = document.getElementById("password_login").value;
+
+    if (username !== "" && password !== ""){
+        sendLoginCredentials(username, password);
+    }else{
+        alert("Please fill out all required information");
+    }
+}
+
 
 function sendLoginCredentials(username, password){
     let httpReq = new XMLHttpRequest();
@@ -33,7 +44,7 @@ function logout() {
                     alert("Problem logging out user.  Please try again");
                 }
             } else {
-                document.getElementById("loginButtonId").innerHTML = "Loading...";
+                document.getElementById("logoutButtonId").innerHTML = "Loading...";
             }
         };
         httpReq.open("GET", "functions.php?type=Logout");

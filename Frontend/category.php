@@ -42,7 +42,7 @@ $cat_id = $_GET['id'];
                 <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">
                   <a class=\"dropdown-item\" href=\"profile.php\">Profile</a>
                   <div class=\"dropdown-divider\"></div>
-                  <button type=\"button\" style='margin-left:20px;' class=\"btn btn-danger btn-sm\" onclick='logout()'>Logout</button>
+                  <button type=\"button\" style='margin-left:20px;' id='logoutButtonId' class=\"btn btn-danger btn-sm\" onclick='logout()'>Logout</button>
                 </div>
               </li>";
             }else {
