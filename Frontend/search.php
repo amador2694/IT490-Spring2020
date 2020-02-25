@@ -1,5 +1,6 @@
 <?php
 session_start();
+$_SESSION['username'] = "Bryan";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -8,7 +9,7 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="style.css">
-    <title>Search our Database</title>
+    <title>Search Our Database</title>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
@@ -52,22 +53,30 @@ session_start();
     </div>
 </nav>
 
-<div style="margin-top: 30px;" class="container-fluid">
+<div style="margin-top: 30px;" class="container">
     <form class="form-padding search-group text-center">
-        <h2>First, select the parameter you would like to search by:</h2>
+        <h3>First, select the parameter you would like to search by:</h3>
         <select id="search_type" class="form-margin-bottom mr-sm-2 form-control form-control-lg" onchange="showDiv('hidden_div', this)">
-            <option value="0" selected>Search by...</option>
-            <option value="1">Name (Squirtle, Bulbasaur, etc.)</option>
-            <option value="2">Pokedex Number (1,13,25, etc.)</option>
-            <option value="3">Type (Fire, Water, Fairy, etc.)</option>
-            <option value="4">Ability (Flame Body, Magic Guard, etc.)</option>
+            <option value="" selected>Search by...</option>
+            <option value="name">Name (Squirtle, Bulbasaur, etc.)</option>
+            <option value="pokedexNum">Pokedex Number (1, 13, 25, etc.)</option>
+            <option value="pokeType">Type (Fire, Water, Fairy, etc.)</option>
+            <option value="ability">Ability (Flame Body, Magic Guard, etc.)</option>
         </select>
-        <div id="hidden_div">
-            <label class="lead" for="pokemon_search"><h2>Now, search for Pokemon using your selected parameter below:</h2></label>
-            <input type="text" class="form-margin-bottom form-control form-control-lg" id="pokemon_search" placeholder="Input your search criteria here">
-            <button class="form-margin-bottom btn btn-lg btn-outline-warning" type="button" onclick="checkSearchFields()">Search</button>
+        <div id="hidden_div" class="form-margin-bottom">
+            <label class="lead" for="pokemon_search"><h2>Now, search using your selected parameter below:</h2></label>
+            <input type="text" class="form-control form-control-lg" id="pokemon_search" placeholder="Input your search criteria here">
+            <button style="margin-top: 10px;" class="btn btn-lg btn-outline-warning" type="button" onclick="checkSearchFields()">Search</button>
         </div>
     </form>
+
+    <div id="search_results">
+
+
+
+
+    </div>
+
 </div>
 
 

@@ -100,7 +100,7 @@ $topic_id = $_GET['id'];
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" id="loginButtonId" class="btn btn-warning btn-lg" onclick="createReply()">Submit</button>
+                <button type="button" id="loginButtonId" class="btn btn-warning btn-lg" onclick="checkPostFields()">Submit</button>
             </div>
         </div>
     </div>

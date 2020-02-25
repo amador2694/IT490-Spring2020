@@ -58,10 +58,32 @@ switch ($type) {
     case "Search":
         $request = array();
         $request['type'] = "Search";
-        $request['pokedexNum'] = $_GET['topic_id'];
-        $request['name'] = $_GET['topic_id'];
-        $request['pokeType'] = $_GET['topic_id'];
-        $request['ability'] = $_GET['topic_id'];
+        $searchType = $_GET['searchType'];
+
+        if ($searchType = "name"){
+            $request['name'] = $_GET['searchText'];
+            $request['pokedexNum'] = "na";
+            $request['pokeType'] = "na";
+            $request['ability'] = "na";
+
+        }elseif ($searchType = "pokedexNum"){
+            $request['name'] = "na";
+            $request['pokedexNum'] = $_GET['searchText'];
+            $request['pokeType'] = "na";
+            $request['ability'] = "na";
+
+        }elseif ($searchType = "pokeType"){
+            $request['name'] = "na";
+            $request['pokedexNum'] = "na";
+            $request['pokeType'] = $_GET['searchText'];
+            $request['ability'] = "na";
+
+        }elseif ($searchType = "ability"){
+            $request['name'] = "na";
+            $request['pokedexNum'] = "na";
+            $request['pokeType'] = "na";
+            $request['ability'] = $_GET['searchText'];
+        }
         $response = createClientRequest($request);
         echo $response;
         break;

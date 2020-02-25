@@ -202,7 +202,7 @@ function createPost(postText) {
         if (this.readyState == 4 && this.status == 200) {
 
             if(this.responseText == true){
-                alert("New category created successfully!");
+                alert("New post created successfully!");
                 window.location = "forum.php";
             }else{
                 alert("Problems creating new category.  Please try again");
@@ -212,24 +212,34 @@ function createPost(postText) {
         httpReq.open("GET", "functions.php?type=CreatePost&postText=" + postText);
         httpReq.send(null);
     }
-}function showDiv(divId, element)
-{
-    document.getElementById(divId).style.display = element.value > 0 ? 'block' : 'none';
 }
+function showDiv(divId, element) {
+    document.getElementById(divId).style.display = element.value !== "" ? 'block' : 'none';
+}
+
 function checkSearchFields(){
-    let searchText = document.getElementById('pokemon_search').value;
+    let searchText_upper = document.getElementById('pokemon_search').value;
     let dropdown = document.getElementById("search_type");
-    let searchType = dropdown.options[dropdown.selectedIndex].value;
+    let searchType_upper = dropdown.options[dropdown.selectedIndex].value;
+
+    let searchType = searchType_upper.toLowerCase();
+    let searchText = searchText_upper.toLowerCase();
+
     if (searchText !== ""){
-        searchText.toLowerCase();
-        searchType.toLowerCase();
-        alert(searchType + searchText);
         createSearch(searchText, searchType);
     }else{
         alert("Please fill in all required fields");
     }
 }
 
-function createSearch() {
+function createSearch(searchText, searchType) {
+    let httpReq = new XMLHttpRequest();
+    httpReq.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
 
+            document.getElementById("search_results").innerHTML = this.responseText;
+        }
+        httpReq.open("GET", "functions.php?type=Search&searchType=" + searchType + "&searchText=" + searchText);
+        httpReq.send(null);
+    }
 }
