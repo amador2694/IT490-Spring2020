@@ -1,6 +1,4 @@
-//  Form validation for Login
 
-// This function sends a AJAX request for login
 function sendLoginCredentials(username, password){
     let httpReq = new XMLHttpRequest();
     httpReq.onreadystatechange = function(){
@@ -98,6 +96,28 @@ function loadCategories() {
         httpReq.send(null);
     }
 }
+function loadTopics() {
+    let httpReq = new XMLHttpRequest();
+    httpReq.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+
+            document.getElementById("topicssTable").innerHTML = this.responseText;
+        }
+        httpReq.open("GET", "functions.php?type=LoadTopics&cat_id=" + cat_id);
+        httpReq.send(null);
+    }
+}
+function loadPosts() {
+    let httpReq = new XMLHttpRequest();
+    httpReq.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+
+            document.getElementById("postsTable").innerHTML = this.responseText;
+        }
+        httpReq.open("GET", "functions.php?type=LoadPosts&topic_id=" + topic_id);
+        httpReq.send(null);
+    }
+}
 function checkCategoryFields(){
 
     let catName = document.getElementById('category_name').value;
@@ -152,22 +172,22 @@ function createTopic(topicName, topicCategory, topicDesc) {
             }
 
         }
-        httpReq.open("GET", "functions.php?type=CreateCategory&topicName=" + topicName + "&topicCategory=" + topicCategory +  "&topicDesc=" + topicDesc);
+        httpReq.open("GET", "functions.php?type=CreateTopic&topicName=" + topicName + "&topicCategory=" + topicCategory +  "&topicDesc=" + topicDesc);
         httpReq.send(null);
     }
 }
 
-function checkReply(){
+function checkPostFields(){
 
-    let replyText = document.getElementById('topic_name').value;
+    let postText = document.getElementById('post_desc').value;
 
-    if (topicName !== "" && topicDesc !== ""){
-        createTopic(topicName, topicCategory, topicDesc);
+    if (postText !== ""){
+        createPost(postText);
     }else{
         alert("Please fill in all required fields");
     }
 }
-function createTopic(topicName, topicCategory, topicDesc) {
+function createPost(postText) {
     let httpReq = new XMLHttpRequest();
     httpReq.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
@@ -180,7 +200,7 @@ function createTopic(topicName, topicCategory, topicDesc) {
             }
 
         }
-        httpReq.open("GET", "functions.php?type=CreateCategory&topicName=" + topicName + "&topicCategory=" + topicCategory +  "&topicDesc=" + topicDesc);
+        httpReq.open("GET", "functions.php?type=CreatePost&postText=" + postText);
         httpReq.send(null);
     }
 }
