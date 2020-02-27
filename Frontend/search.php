@@ -1,6 +1,6 @@
 <?php
 session_start();
-$_SESSION['username'] = "Bryan";
+//$_SESSION['username'] = "Bryan";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -71,7 +71,7 @@ $_SESSION['username'] = "Bryan";
     </form>
 
     <div id="search_results">
-
+        
 
 
 
