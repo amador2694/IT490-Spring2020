@@ -39,6 +39,26 @@ switch ($type) {
         echo $response;
         break;
 
+    case "CreateCategory":
+        $request = array();
+        $request['type'] = "CreateCategory";
+        $request['cat_name'] = $_GET['catName'];
+        $request['cat_desc'] = $_GET['catDesc'];
+        $response = createClientRequest($request);
+        echo $response;
+        break;
+
+    case "CreateTopic":
+        $request = array();
+        $request['type'] = "CreateTopic";
+        $request['topic_name'] = $_GET['topicName'];
+        $request['cat_name'] = $_GET['topicCatName'];
+        $request['topic_desc'] = $_GET['topicDesc'];
+        $response = createClientRequest($request);
+        echo $response;
+        break;
+
+
     case "LoadTopics":
         $request = array();
         $request['type'] = "LoadTopics";
@@ -132,9 +152,7 @@ function createClientRequest($request){
 
     return $response;
 }
-/*
 
-*/
 ?>
 
 

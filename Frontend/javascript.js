@@ -162,14 +162,23 @@ function checkTopicFields(){
     let dropdown = document.getElementById("selectCategory");
     let topicCategory = dropdown.options[dropdown.selectedIndex].value;
     let topicDesc = document.getElementById('topic_desc').value;
+    let topicCatName;
+
 
     if (topicName !== "" && topicDesc !== ""){
-        createTopic(topicName, topicCategory, topicDesc);
+        if (topicCategory == 0){
+            topicCatName = "General Discussion";
+        }else if (topicCategory == 1){
+            topicCatName = "Competitive Play";
+        }else if (topicCategory == 2){
+            topicCatName = "Game Discussion";
+        }
+        createTopic(topicName, topicCatName, topicDesc);
     }else{
         alert("Please fill in all required fields");
     }
 }
-function createTopic(topicName, topicCategory, topicDesc) {
+function createTopic(topicName, topicCatName, topicDesc) {
     let httpReq = new XMLHttpRequest();
     httpReq.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
@@ -182,7 +191,7 @@ function createTopic(topicName, topicCategory, topicDesc) {
             }
 
         }
-        httpReq.open("GET", "functions.php?type=CreateTopic&topicName=" + topicName + "&topicCategory=" + topicCategory +  "&topicDesc=" + topicDesc);
+        httpReq.open("GET", "functions.php?type=CreateTopic&topicName=" + topicName + "&topicCatName=" + topicCatName +  "&topicDesc=" + topicDesc);
         httpReq.send(null);
     }
 }

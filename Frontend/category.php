@@ -109,9 +109,9 @@ echo '
                     <div class="form-padding form-group">
                         <label for="exampleFormControlSelect1">Choose topic's category</label>
                         <select class="form-control" id="selectCategory">
-                            <option>General Discussion</option>
-                            <option>Competitive Play</option>
-                            <option>Game Discussion</option>
+                            <option value="0">General Discussion</option>
+                            <option value="1">Competitive Play</option>
+                            <option value="2">Game Discussion</option>
                         </select>
                     </div>
                     <div class="form-padding password-group">

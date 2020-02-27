@@ -91,10 +91,14 @@ table{
   font-size: 1.2rem;
   font-weight: bold;
 }
+.tableHeader{
+  background-color: #E82E44;
+}
+
 .tableTitle{
   font-size: 1.5rem;
   font-weight: bolder;
-  text-decoration: underline;
+  letter-spacing: .4rem;
 }
 thead{
   text-align: center;
