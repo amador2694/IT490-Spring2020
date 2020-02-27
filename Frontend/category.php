@@ -55,7 +55,8 @@ $cat_id = $_GET['id'];
 
 
 
-
+<?php
+echo '
 <div class="container">
     <div id="topicsTable">
         <table class="table table-hover table-dark">
@@ -83,7 +84,8 @@ $cat_id = $_GET['id'];
     </div>
     <button type="button" id="registerButtonId" class="btn btn-outline-warning btn-lg" data-toggle="modal" data-target="#topicmodal"><i class="fas fa-edit"></i> Create a New Topic</button>
 </div>
-
+';
+?>
 
 
 

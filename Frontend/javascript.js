@@ -1,4 +1,5 @@
 function checkLoginCredentials(){
+    //  Taking Form input
     let username = document.getElementById("username_login").value;
     let password = document.getElementById("password_login").value;
 
@@ -8,8 +9,6 @@ function checkLoginCredentials(){
         alert("Please fill out all required information");
     }
 }
-
-
 function sendLoginCredentials(username, password){
     let httpReq = new XMLHttpRequest();
     httpReq.onreadystatechange = function(){
@@ -189,7 +188,6 @@ function createTopic(topicName, topicCategory, topicDesc) {
 }
 
 function checkPostFields(){
-
     let postText = document.getElementById('post_desc').value;
 
     if (postText !== ""){
@@ -204,7 +202,7 @@ function createPost(postText) {
         if (this.readyState == 4 && this.status == 200) {
 
             if(this.responseText == true){
-                alert("New category created successfully!");
+                alert("New post created successfully!");
                 window.location = "forum.php";
             }else{
                 alert("Problems creating new category.  Please try again");
@@ -212,6 +210,36 @@ function createPost(postText) {
 
         }
         httpReq.open("GET", "functions.php?type=CreatePost&postText=" + postText);
+        httpReq.send(null);
+    }
+}
+function showDiv(divId, element) {
+    document.getElementById(divId).style.display = element.value !== "" ? 'block' : 'none';
+}
+
+function checkSearchFields(){
+    let searchText_upper = document.getElementById('pokemon_search').value;
+    let dropdown = document.getElementById("search_type");
+    let searchType_upper = dropdown.options[dropdown.selectedIndex].value;
+
+    let searchType = searchType_upper.toLowerCase();
+    let searchText = searchText_upper.toLowerCase();
+
+    if (searchText !== ""){
+        createSearch(searchText, searchType);
+    }else{
+        alert("Please fill in all required fields");
+    }
+}
+
+function createSearch(searchText, searchType) {
+    let httpReq = new XMLHttpRequest();
+    httpReq.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+
+            document.getElementById("search_results").innerHTML = this.responseText;
+        }
+        httpReq.open("GET", "functions.php?type=Search&searchType=" + searchType + "&searchText=" + searchText);
         httpReq.send(null);
     }
 }
