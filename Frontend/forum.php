@@ -54,21 +54,10 @@ session_start();
 
 
 <div class="container">
+    <button type="button" id="loadButtonId" class="btn btn-outline-danger btn-lg" onclick="loadCategories(); return false">Load Forum</button>
+
     <div id="categoriesTable">
-        <?php echo "<table class=\"table table-hover table-dark\">
-            <thead>
-            <tr class=\"tableHeader\">
-                <th colspan=\"6\"><span class=\"tableTitle\">Pokeplace Forums</span></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td><a href=\"category.php?id=' . $row['cat_id'] . '\"><span class=\"categoryTitle\">' . $row['cat_title'] . '</span></a></td>
-                <td>' . $row['cat_desc'] . '</td>
-            </tr>
-            </tbody>
-        </table>";
-        ?>
+
     </div>
     <button type="button" id="registerButtonId" class="btn btn-outline-danger btn-lg" data-toggle="modal" data-target="#categorymodal"><i class="fas fa-edit"></i> Create a New Category</button>
 </div>

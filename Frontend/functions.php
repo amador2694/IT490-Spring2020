@@ -130,6 +130,7 @@ function createClientRequest($request){
     $client = new rabbitMQClient("../rabbitmqphp_example/rabbitMQ_db.ini", "testServer");
     $response = $client->send_request($request);
 
+
     return $response;
 }
 /*

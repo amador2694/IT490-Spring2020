@@ -102,9 +102,10 @@ function loadCategories() {
 
             document.getElementById("categoriesTable").innerHTML = this.responseText;
         }
-        httpReq.open("GET", "functions.php?type=LoadCategories");
-        httpReq.send(null);
-    }
+    };
+    httpReq.open("GET", "functions.php?type=LoadCategories");
+    httpReq.send(null);
+    alert("test");
 }
 function loadTopics() {
     let httpReq = new XMLHttpRequest();
@@ -113,9 +114,10 @@ function loadTopics() {
 
             document.getElementById("topicssTable").innerHTML = this.responseText;
         }
-        httpReq.open("GET", "functions.php?type=LoadTopics&cat_id=" + cat_id);
-        httpReq.send(null);
-    }
+
+    };
+    httpReq.open("GET", "functions.php?type=LoadTopics&cat_id=" + cat_id);
+    httpReq.send(null);
 }
 function loadPosts() {
     let httpReq = new XMLHttpRequest();
