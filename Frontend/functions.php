@@ -3,7 +3,6 @@ require_once('../rabbitmqphp_example/path.inc');
 require_once('../rabbitmqphp_example/get_host_info.inc');
 require_once('../rabbitmqphp_example/rabbitMQLib.inc');
 
-//  This function starts session
 session_start();
 
 $type = $_GET["type"];

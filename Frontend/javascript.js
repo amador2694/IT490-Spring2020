@@ -126,9 +126,10 @@ function loadPosts() {
 
             document.getElementById("postsTable").innerHTML = this.responseText;
         }
-        httpReq.open("GET", "functions.php?type=LoadPosts&topic_id=" + topic_id);
-        httpReq.send(null);
-    }
+
+    };
+    httpReq.open("GET", "functions.php?type=LoadPosts&topic_id=" + topic_id);
+    httpReq.send(null);
 }
 function checkCategoryFields(){
 
@@ -152,11 +153,10 @@ function createCategory(catName, catDesc) {
             }else{
                 alert("Problems creating new category.  Please try again");
             }
-
         }
-        httpReq.open("GET", "functions.php?type=CreateCategory&catName=" + catName + "&catDesc=" + catDesc);
-        httpReq.send(null);
-    }
+    };
+    httpReq.open("GET", "functions.php?type=CreateCategory&catName=" + catName + "&catDesc=" + catDesc);
+    httpReq.send(null);
 }
 function checkTopicFields(){
 
@@ -182,11 +182,10 @@ function createTopic(topicName, topicCategory, topicDesc) {
             }else{
                 alert("Problems creating new category.  Please try again");
             }
-
         }
-        httpReq.open("GET", "functions.php?type=CreateTopic&topicName=" + topicName + "&topicCategory=" + topicCategory +  "&topicDesc=" + topicDesc);
-        httpReq.send(null);
-    }
+    };
+    httpReq.open("GET", "functions.php?type=CreateTopic&topicName=" + topicName + "&topicCategory=" + topicCategory +  "&topicDesc=" + topicDesc);
+    httpReq.send(null);
 }
 
 function checkPostFields(){
@@ -211,9 +210,9 @@ function createPost(postText) {
             }
 
         }
-        httpReq.open("GET", "functions.php?type=CreatePost&postText=" + postText);
-        httpReq.send(null);
-    }
+    };
+    httpReq.open("GET", "functions.php?type=CreatePost&postText=" + postText);
+    httpReq.send(null);
 }
 function showDiv(divId, element) {
     document.getElementById(divId).style.display = element.value !== "" ? 'block' : 'none';
@@ -241,7 +240,7 @@ function createSearch(searchText, searchType) {
 
             document.getElementById("search_results").innerHTML = this.responseText;
         }
-        httpReq.open("GET", "functions.php?type=Search&searchType=" + searchType + "&searchText=" + searchText);
-        httpReq.send(null);
-    }
+    };
+    httpReq.open("GET", "functions.php?type=Search&searchType=" + searchType + "&searchText=" + searchText);
+    httpReq.send(null);
 }

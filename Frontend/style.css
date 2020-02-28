@@ -123,3 +123,6 @@ td > a:hover{
 #hidden_div{
   display: none;
 }
+th{
+  background-color: #E82E44;
+}
