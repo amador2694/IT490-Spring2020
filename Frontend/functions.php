@@ -38,6 +38,17 @@ switch ($type) {
         echo $response;
         break;
 
+    case "CreateCategory":
+        $request = array();
+
+        $request['type'] = "CreateCategories";
+        $request['cat_name'] = $_GET['catName'];
+        $request['cat_description'] = $_GET['catDesc'];
+
+        $response = createClientRequest($request);
+        echo $response;
+        break;
+
     case "LoadTopics":
         $request = array();
         $request['type'] = "LoadTopics";

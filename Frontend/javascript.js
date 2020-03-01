@@ -104,9 +104,6 @@ function loadCategories() {
     httpReq.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
 
-            console.log(this.responseText);
-            alert(this.responseText);
-
             document.getElementById("categoriesTable").innerHTML = this.responseText;
 
         }
@@ -144,6 +141,7 @@ function checkCategoryFields(){
     let catDesc = document.getElementById('category_desc').value;
 
     if (catName !== "" && catDesc !== ""){
+        console.log(catName + catDesc);
         createCategory(catName, catDesc);
     }else{
         alert("Please fill in all required fields");

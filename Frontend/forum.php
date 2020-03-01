@@ -54,31 +54,11 @@ session_start();
 
 
 <div class="container">
-    <button type="button" id="loadButtonId" class="btn btn-outline-danger btn-lg" onclick="loadCategories(); return false">Load Forum</button>
     <div id="categoriesTable">
-        <table class="table table-hover table-dark">
-            <thead>
-            <tr>
-                <th colspan="6"><span class="tableTitle">Categories</span></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td><a href="categories.php?id=' . $row['categories_id'] . '"><span class="categoryTitle">' . $row['categories_name'] . '</span></a></td>
-                <td>' . $row['categories_description'] . '</td>
-            </tr>
-            </tbody>
-        </table>
+
     </div>
     <button type="button" id="registerButtonId" class="btn btn-outline-danger btn-lg" data-toggle="modal" data-target="#categorymodal"><i class="fas fa-edit"></i> Create a New Category</button>
 </div>
-
-
-
-
-
-
-
 
 
     <div class="modal fade" id="loginmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
