@@ -3,6 +3,8 @@
 require_once('path.inc');
 require_once('get_host_info.inc');
 require_once('rabbitMQLib.inc');
+
+
 include('dbConnection.php'); 
 
 function doLogin($username,$password)
@@ -69,7 +71,9 @@ function errorCheck($db) {
 		exit(0); 
 	}
 }
-$server = new rabbitMQServer("testRabbitMQ_db.ini","testServer");
+
+$server = new rabbitMQServer('rabbitMQ_db.ini', 'testServer');
+
 
 $server->process_requests('requestProcessor');
 exit();
