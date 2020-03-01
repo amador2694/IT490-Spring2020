@@ -126,3 +126,6 @@ td > a:hover{
 th{
   background-color: #E82E44;
 }
+#categoriesTable{
+  display: block;
+}

@@ -15,12 +15,16 @@ function sendLoginCredentials(username, password){
         if(this.readyState == 4 && this.status == 200){
             document.getElementById("loginButtonId").innerHTML = "Login";
 
+            console.log(this.responseText);
+            alert(this.responseText);
+
             if(this.responseText == true){
                 alert("Logged in successfully");
                 window.location = "profile.php";
             }else{
                 alert("Problem logging in.  Please try again");
             }
+
         }else{
             document.getElementById("loginButtonId").innerHTML = "Loading...";
         }
@@ -80,7 +84,7 @@ function sendRegisterCredentials(firstname, lastname, username, email, password)
         if(this.readyState == 4 && this.status == 200){
             document.getElementById("registerButtonId").innerHTML = "Register";
 
-            if(this.responseText == true){
+            if(this.responseText === "True"){
                 alert("Registered successfully!  You may now login with your new credentials");
                 window.location = "index.php";
             }else{
@@ -100,12 +104,15 @@ function loadCategories() {
     httpReq.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
 
+            console.log(this.responseText);
+            alert(this.responseText);
+
             document.getElementById("categoriesTable").innerHTML = this.responseText;
+
         }
     };
     httpReq.open("GET", "functions.php?type=LoadCategories");
     httpReq.send(null);
-    alert("test");
 }
 function loadTopics() {
     let httpReq = new XMLHttpRequest();

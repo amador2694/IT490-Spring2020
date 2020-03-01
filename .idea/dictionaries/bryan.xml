@@ -3,6 +3,7 @@
     <words>
       <w>firstname</w>
       <w>lastname</w>
+      <w>rabbitmqphp</w>
       <w>topnav</w>
     </words>
   </dictionary>
