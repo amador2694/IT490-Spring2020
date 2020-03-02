@@ -166,30 +166,28 @@ function createCategory(catName, catDesc) {
 function checkTopicFields(){
 
     let topicName = document.getElementById('topic_name').value;
-    let dropdown = document.getElementById("selectCategory");
-    let topicCategory = dropdown.options[dropdown.selectedIndex].value;
     let topicDesc = document.getElementById('topic_desc').value;
 
     if (topicName !== "" && topicDesc !== ""){
-        createTopic(topicName, topicCategory, topicDesc);
+        createTopic(topicName, topicDesc);
     }else{
         alert("Please fill in all required fields");
     }
 }
-function createTopic(topicName, topicCategory, topicDesc) {
+function createTopic(topicName, topicDesc) {
     let httpReq = new XMLHttpRequest();
     httpReq.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
 
             if(this.responseText == true){
-                alert("New category created successfully!");
-                window.location = "forum.php";
+                alert("New topic created successfully!");
+                window.location = "category.php?id=" + cat_id;
             }else{
-                alert("Problems creating new category.  Please try again");
+                alert("Problems creating new topic.  Please try again");
             }
         }
     };
-    httpReq.open("GET", "functions.php?type=CreateTopic&topicName=" + topicName + "&topicCategory=" + topicCategory +  "&topicDesc=" + topicDesc);
+    httpReq.open("GET", "functions.php?type=CreateTopic&cat_id=" + cat_id + "&topicName=" + topicName + "&topicDesc=" + topicDesc);
     httpReq.send(null);
 }
 
@@ -216,7 +214,7 @@ function createPost(postText) {
 
         }
     };
-    httpReq.open("GET", "functions.php?type=CreatePost&postText=" + postText);
+    httpReq.open("GET", "functions.php?type=CreatePost&postText=" + postText + "&topic_id=" + topic_id);
     httpReq.send(null);
 }
 function showDiv(divId, element) {

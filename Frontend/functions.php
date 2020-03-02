@@ -57,10 +57,32 @@ switch ($type) {
         echo $response;
         break;
 
+    case "CreateTopic":
+        $request = array();
+
+        $request['type'] = "CreateTopic";
+        $request['cat_id'] = $_GET['cat_id'];
+        $request['topic_subject'] = $_GET['topicName'];
+
+        $response = createClientRequest($request);
+        echo $response;
+        break;
+
     case "LoadPosts":
         $request = array();
         $request['type'] = "LoadPosts";
-        $request['id'] = $_GET['topic_id'];
+        $request['topic_id'] = $_GET['topic_id'];
+        $response = createClientRequest($request);
+        echo $response;
+        break;
+
+    case "CreatePost":
+        $request = array();
+
+        $request['type'] = "CreatePost";
+        $request['topic_id'] = $_GET['topic_id'];
+        $request['post_description'] = $_GET['postText'];
+
         $response = createClientRequest($request);
         echo $response;
         break;

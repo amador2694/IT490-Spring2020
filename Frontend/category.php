@@ -68,18 +68,9 @@ echo '
             </thead>
             <tbody>
             <tr>
-                <td><a href="topic.php?id=' . $row['topic_id'] . '"><span class="categoryTitle">' . $row['topic_title'] . '</span></a></td>
+                <td><a href="topic.php?id=' . $row['topic_id'] . '"><span class="categoryTitle">' . $row['topic_subject'] . '</span></a></td>
                 <td>' . $row['topic_date'] . '</td>
             </tr>
-            <tr>
-                <td><a href="topic.php?id=' . $row['topic_id'] . '"><span class="categoryTitle">' . $row['topic_title'] . '</span></td>
-                <td>' . $row['topic_date'] . '</td>
-            </tr>
-            <tr>
-                <td><a href="topic.php?id=' . $row['topic_id'] . '"><span class="categoryTitle">' . $row['topic_title'] . '</span></td>
-                <td>' . $row['topic_date'] . '</td>
-            </tr>
-            </tbody>
         </table>
     </div>
     <button type="button" id="registerButtonId" class="btn btn-outline-warning btn-lg" data-toggle="modal" data-target="#topicmodal"><i class="fas fa-edit"></i> Create a New Topic</button>
@@ -103,19 +94,11 @@ echo '
             <div class="modal-body">
                 <form>
                     <div class="form-padding username-group">
-                        <label for="category_name">Topic Name:</label>
+                        <label for="topic_name">Topic Name:</label>
                         <input type="text" class="form-control" id="topic_name" aria-describedby="emailHelp">
                     </div>
-                    <div class="form-padding form-group">
-                        <label for="exampleFormControlSelect1">Choose topic's category</label>
-                        <select class="form-control" id="selectCategory">
-                            <option value="0">General Discussion</option>
-                            <option value="1">Competitive Play</option>
-                            <option value="2">Game Discussion</option>
-                        </select>
-                    </div>
                     <div class="form-padding password-group">
-                        <label for="category_desc">Description:</label>
+                        <label for="topic_desc">Description:</label>
                         <textarea class="form-control" id="topic_desc" rows="4"></textarea>
                     </div>
                 </form>
