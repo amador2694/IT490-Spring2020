@@ -15,12 +15,16 @@ function sendLoginCredentials(username, password){
         if(this.readyState == 4 && this.status == 200){
             document.getElementById("loginButtonId").innerHTML = "Login";
 
+            console.log(this.responseText);
+            alert(this.responseText);
+
             if(this.responseText == true){
                 alert("Logged in successfully");
                 window.location = "profile.php";
             }else{
                 alert("Problem logging in.  Please try again");
             }
+
         }else{
             document.getElementById("loginButtonId").innerHTML = "Loading...";
         }
@@ -80,7 +84,7 @@ function sendRegisterCredentials(firstname, lastname, username, email, password)
         if(this.readyState == 4 && this.status == 200){
             document.getElementById("registerButtonId").innerHTML = "Register";
 
-            if(this.responseText == true){
+            if(this.responseText === "True"){
                 alert("Registered successfully!  You may now login with your new credentials");
                 window.location = "index.php";
             }else{
@@ -101,10 +105,11 @@ function loadCategories() {
         if (this.readyState == 4 && this.status == 200) {
 
             document.getElementById("categoriesTable").innerHTML = this.responseText;
+
         }
-        httpReq.open("GET", "functions.php?type=LoadCategories");
-        httpReq.send(null);
-    }
+    };
+    httpReq.open("GET", "functions.php?type=LoadCategories");
+    httpReq.send(null);
 }
 function loadTopics() {
     let httpReq = new XMLHttpRequest();
@@ -113,9 +118,10 @@ function loadTopics() {
 
             document.getElementById("topicssTable").innerHTML = this.responseText;
         }
-        httpReq.open("GET", "functions.php?type=LoadTopics&cat_id=" + cat_id);
-        httpReq.send(null);
-    }
+
+    };
+    httpReq.open("GET", "functions.php?type=LoadTopics&cat_id=" + cat_id);
+    httpReq.send(null);
 }
 function loadPosts() {
     let httpReq = new XMLHttpRequest();
@@ -124,9 +130,10 @@ function loadPosts() {
 
             document.getElementById("postsTable").innerHTML = this.responseText;
         }
-        httpReq.open("GET", "functions.php?type=LoadPosts&topic_id=" + topic_id);
-        httpReq.send(null);
-    }
+
+    };
+    httpReq.open("GET", "functions.php?type=LoadPosts&topic_id=" + topic_id);
+    httpReq.send(null);
 }
 function checkCategoryFields(){
 
@@ -134,6 +141,7 @@ function checkCategoryFields(){
     let catDesc = document.getElementById('category_desc').value;
 
     if (catName !== "" && catDesc !== ""){
+        console.log(catName + catDesc);
         createCategory(catName, catDesc);
     }else{
         alert("Please fill in all required fields");
@@ -150,11 +158,10 @@ function createCategory(catName, catDesc) {
             }else{
                 alert("Problems creating new category.  Please try again");
             }
-
         }
-        httpReq.open("GET", "functions.php?type=CreateCategory&catName=" + catName + "&catDesc=" + catDesc);
-        httpReq.send(null);
-    }
+    };
+    httpReq.open("GET", "functions.php?type=CreateCategory&catName=" + catName + "&catDesc=" + catDesc);
+    httpReq.send(null);
 }
 function checkTopicFields(){
 
@@ -162,23 +169,14 @@ function checkTopicFields(){
     let dropdown = document.getElementById("selectCategory");
     let topicCategory = dropdown.options[dropdown.selectedIndex].value;
     let topicDesc = document.getElementById('topic_desc').value;
-    let topicCatName;
-
 
     if (topicName !== "" && topicDesc !== ""){
-        if (topicCategory == 0){
-            topicCatName = "General Discussion";
-        }else if (topicCategory == 1){
-            topicCatName = "Competitive Play";
-        }else if (topicCategory == 2){
-            topicCatName = "Game Discussion";
-        }
-        createTopic(topicName, topicCatName, topicDesc);
+        createTopic(topicName, topicCategory, topicDesc);
     }else{
         alert("Please fill in all required fields");
     }
 }
-function createTopic(topicName, topicCatName, topicDesc) {
+function createTopic(topicName, topicCategory, topicDesc) {
     let httpReq = new XMLHttpRequest();
     httpReq.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
@@ -189,11 +187,10 @@ function createTopic(topicName, topicCatName, topicDesc) {
             }else{
                 alert("Problems creating new category.  Please try again");
             }
-
         }
-        httpReq.open("GET", "functions.php?type=CreateTopic&topicName=" + topicName + "&topicCatName=" + topicCatName +  "&topicDesc=" + topicDesc);
-        httpReq.send(null);
-    }
+    };
+    httpReq.open("GET", "functions.php?type=CreateTopic&topicName=" + topicName + "&topicCategory=" + topicCategory +  "&topicDesc=" + topicDesc);
+    httpReq.send(null);
 }
 
 function checkPostFields(){
@@ -218,9 +215,9 @@ function createPost(postText) {
             }
 
         }
-        httpReq.open("GET", "functions.php?type=CreatePost&postText=" + postText);
-        httpReq.send(null);
-    }
+    };
+    httpReq.open("GET", "functions.php?type=CreatePost&postText=" + postText);
+    httpReq.send(null);
 }
 function showDiv(divId, element) {
     document.getElementById(divId).style.display = element.value !== "" ? 'block' : 'none';
@@ -248,7 +245,7 @@ function createSearch(searchText, searchType) {
 
             document.getElementById("search_results").innerHTML = this.responseText;
         }
-        httpReq.open("GET", "functions.php?type=Search&searchType=" + searchType + "&searchText=" + searchText);
-        httpReq.send(null);
-    }
+    };
+    httpReq.open("GET", "functions.php?type=Search&searchType=" + searchType + "&searchText=" + searchText);
+    httpReq.send(null);
 }

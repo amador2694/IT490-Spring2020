@@ -3,7 +3,6 @@ require_once('../rabbitmqphp_example/path.inc');
 require_once('../rabbitmqphp_example/get_host_info.inc');
 require_once('../rabbitmqphp_example/rabbitMQLib.inc');
 
-//  This function starts session
 session_start();
 
 $type = $_GET["type"];
@@ -41,23 +40,14 @@ switch ($type) {
 
     case "CreateCategory":
         $request = array();
-        $request['type'] = "CreateCategory";
+
+        $request['type'] = "CreateCategories";
         $request['cat_name'] = $_GET['catName'];
-        $request['cat_desc'] = $_GET['catDesc'];
+        $request['cat_description'] = $_GET['catDesc'];
+
         $response = createClientRequest($request);
         echo $response;
         break;
-
-    case "CreateTopic":
-        $request = array();
-        $request['type'] = "CreateTopic";
-        $request['topic_name'] = $_GET['topicName'];
-        $request['cat_name'] = $_GET['topicCatName'];
-        $request['topic_desc'] = $_GET['topicDesc'];
-        $response = createClientRequest($request);
-        echo $response;
-        break;
-
 
     case "LoadTopics":
         $request = array();

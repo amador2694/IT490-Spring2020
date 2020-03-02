@@ -1,6 +1,6 @@
 <?php
 session_start();
-$_SESSION['username'] = "Bryan";
+//$_SESSION['username'] = "Bryan";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -71,27 +71,22 @@ $_SESSION['username'] = "Bryan";
     </form>
 
     <div id="search_results">
-        <div id="searchResultsTable">
-            <table class="table table-hover table-dark">
-                <thead>
-                <tr class="tableHeader">
-                    <th colspan="6"><span class="tableTitle">Search Results</span></th>
-                </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><a href="pokemon.php?id=' . $row['poke_id'] . '"><span class="categoryTitle">' . $row['poke_name'] . '</span></a></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-
-
+        <table class="table table-hover table-dark">
+            <thead>
+            <tr>
+                <th colspan="6"><span class="tableTitle">Search Results</span></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><a href="pokemon.php?id=' . $row['poke_id'] . '"><span class="categoryTitle">' . $row['pokeName'] . '</span></a></td>
+            </tr>
+            <tr>
+            </tbody>
+        </table>
     </div>
 
 </div>
-
 
 
 
