@@ -71,6 +71,7 @@ echo '
                 <td><a href="topic.php?id=' . $row['topic_id'] . '"><span class="categoryTitle">' . $row['topic_subject'] . '</span></a></td>
                 <td>' . $row['topic_date'] . '</td>
             </tr>
+            </tbody>
         </table>
     </div>
     <button type="button" id="registerButtonId" class="btn btn-outline-warning btn-lg" data-toggle="modal" data-target="#topicmodal"><i class="fas fa-edit"></i> Create a New Topic</button>
