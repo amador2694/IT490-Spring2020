@@ -182,51 +182,33 @@ function LoadTopics($cat_id){
                $tempString.= "<th><span class="tableTitle">Date posted</span></th>";
            $tempString.= "</tr>";
            $tempString.= "</thead>";
-           $tempString.= "<tbody>";
+	   $tempString.= "<tbody>";
+
+	   while($row = mysqli_fetch_assoc($result)){
            $tempString.= "<tr>";
-               $tempString.= "<td><a href="topic.php?id=' . $row['topic_id'] . '"><span class="categoryTitle">' . $row['topic_subject'] . '</span></a></td>";
-               $tempString.= "<td>' . $row['topic_date'] . '</td>";
-           $tempString.= "</tr>";
+               $tempString.= '<td><a href="topic.php?id=' . $result['topic_id'] . '"><span class="categoryTitle">' . $result['topic_subject'] . '</span></a></td>';
+               $tempString.= '<td>' . $result['topic_date'] . '</td>';
+	       $tempString.= "</tr>";
+	   }
+
            $tempString.= " </tbody>";
        $tempString.= "</table>";
-		//		<tr>
-			//	<th>Category</th>
-			/*	<th>Last topic</th>
-				</tr>';
-			 */
-			                     $tempString = "";
-                        $tempString.=   '<table class="table table-hover table-dark">';
-            $tempString.= '<thead>';
-           $tempString.=' <tr>';
-           $tempString.='     <th colspan="6"><span class="tableTitle">Categories</span></th>';
-           $tempString.=' </tr>';
-           $tempString.=' </thead>';
-           $tempString.=' <tbody>';
-
-			while($row = mysqli_fetch_assoc($result))
-			{
-
-
-
-          $tempString.= '<tr>';
-              $tempString.= ' <td><a href="topic.php?id=' . $row['topic_id'] . '"><span class="categoryTitle">' . $row['topic_subject'] . '</span></a></td>';
-               $tempString.= '<td>' . $row['topic_date'] . '</td>';
-           $tempString.= '</tr>';
-
-			}
-		      $tempString.= ' </tbody>';
-       			$tempString.= '</table>';
+			
+		
+		
+		
+                   
 			return $tempString;
 		}
 	}
 
 }
 
-function LoadPosts(){
+function LoadPosts($topic_id){
 
 	$connection = dbConnection();
 
-	$sql = "SELECT * FROM posts";
+	$sql = "SELECT * FROM posts WHERE topic_id = '$topic_id'";
 
 	$result = mysqli_query($connection,$sql);
 
@@ -291,11 +273,11 @@ function CreateCategories($cat_name, $cat_description){
 	return true; 
 }
 
-function CreateTopic($topic_subject){
+function CreateTopic($topic_subject, $cat_id){
 
         $connection = dbConnection();
 
-        $sqlCategory = "INSERT INTO topics(topic_subject) VALUES('$topic_subject')";
+        $sqlCategory = "INSERT INTO topics(topic_subject, topic_cat) VALUES('$topic_subject', '$cat_id')";
 
         $result = $connection->query($sqlCategory);
 
