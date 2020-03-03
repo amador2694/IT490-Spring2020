@@ -248,7 +248,7 @@ function CreateCategories($cat_name, $cat_description){
 	return true; 
 }
 
-function CreateTopic($topic_subject, $cat_id){
+function CreateTopics($topic_subject, $cat_id){
 
         $connection = dbConnection();
 
