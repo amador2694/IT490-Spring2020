@@ -33,6 +33,7 @@ switch ($type) {
 
     case "LoadCategories":
         $request = array();
+
         $request['type'] = "LoadCategories";
         $response = createClientRequest($request);
         echo $response;
@@ -51,8 +52,9 @@ switch ($type) {
 
     case "LoadTopics":
         $request = array();
+
         $request['type'] = "LoadTopics";
-        $request['id'] = $_GET['cat_id'];
+        $request['cat_id'] = $_GET['cat_id'];
         $response = createClientRequest($request);
         echo $response;
         break;
@@ -60,9 +62,9 @@ switch ($type) {
     case "CreateTopic":
         $request = array();
 
-        $request['type'] = "CreateTopic";
-        $request['cat_id'] = $_GET['cat_id'];
+        $request['type'] = "CreateTopics";
         $request['topic_subject'] = $_GET['topicName'];
+        $request['cat_id'] = $_GET['cat_id'];
 
         $response = createClientRequest($request);
         echo $response;
@@ -70,6 +72,7 @@ switch ($type) {
 
     case "LoadPosts":
         $request = array();
+
         $request['type'] = "LoadPosts";
         $request['topic_id'] = $_GET['topic_id'];
         $response = createClientRequest($request);
@@ -79,9 +82,10 @@ switch ($type) {
     case "CreatePost":
         $request = array();
 
-        $request['type'] = "CreatePost";
+        $request['type'] = "CreatePosts";
+        $request['post_content'] = $_GET['postText'];
         $request['topic_id'] = $_GET['topic_id'];
-        $request['post_description'] = $_GET['postText'];
+        $request['username'] = $_SESSION['username'];
 
         $response = createClientRequest($request);
         echo $response;
@@ -120,7 +124,8 @@ switch ($type) {
                 $request['ability'] = $_GET['searchText'];
                 break;
             }
-
+        $response = createClientRequest($request);
+        echo $response;
         break;
 }
 //  This function will send a login request message to Db through RabbitMQ

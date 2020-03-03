@@ -242,8 +242,7 @@ function createSearch(searchText, searchType) {
     httpReq.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
 
-            alert(this.responseText);
-            console.log(this.responseText + " " + this.responseType);
+            document.getElementById("search_results").innerHTML = this.responseText;
         }
     };
     httpReq.open("GET", "functions.php?type=Search&searchType=" + searchType + "&searchText=" + searchText);

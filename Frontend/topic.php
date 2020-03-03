@@ -59,7 +59,7 @@ $topic_id = $_GET['id'];
         <table class="table table-hover table-dark">
             <thead>
             <tr>
-                <th colspan="6"><span class="tableTitle">Title of Topic</span></th>
+                <th colspan="6"><span class="tableTitle">$row['topic_subject']</span></th>
             </tr>
             </thead>
             <tbody>
