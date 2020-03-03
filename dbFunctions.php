@@ -117,38 +117,28 @@ function LoadCategories(){
 		else
 		{
 
-		//	echo '<table border="1">
-		//		<tr>
-			//	<th>Category</th> 
-			/*	<th>Last topic</th>
-				</tr>'; 
-			 */
-			                     $tempString = "";
-                        $tempString.=   '<table class="table table-hover table-dark">';
-            $tempString.= '<thead>';
-           $tempString.=' <tr>';
-           $tempString.='     <th colspan="6"><span class="tableTitle">Categories</span></th>';
-           $tempString.=' </tr>';
-           $tempString.=' </thead>';
-           $tempString.=' <tbody>';
+		   $tempString = "";
+		   $tempString.= '<table class="table table-hover table-dark">';
+		   $tempString.= '<thead>';
+		   $tempString.='<tr>';
+		   $tempString.='<th colspan="6"><span class="tableTitle">Categories</span></th>';
+		   $tempString.='</tr>';
+		   $tempString.='</thead>';
+		   $tempString.='<tbody>';
 
 			while($row = mysqli_fetch_assoc($result))
 			{ 
-				 
-				
-		
-           $tempString.= ' <tr>';
-               $tempString.= ' <td><a href="category.php?id=' . $row['cat_id'] . '"><span class="categoryTitle">' . $row['cat_name'] . '</span></a></td>';
-	   $tempString.= '  <td>' . $row['cat_description'] . '</td>';	          
-	   $tempString.= ' </tr>';
-            
-
-				 	 
+	
+			   $tempString.= '<tr>';
+			   $tempString.= '<td><a href="category.php?id=' . $row['cat_id'] . '"><span class="categoryTitle">' . $row['cat_name'] . '</span></a></td>';
+			   $tempString.= '<td>' . $row['cat_description'] . '</td>';	          
+			   $tempString.= '</tr>';
 
 			} 
-		      $tempString.= ' </tbody>';
-       			$tempString.= '</table>'; 
-			return $tempString;
+		    $tempString.= '</tbody>';
+       		    $tempString.= '</table>'; 
+		    
+		    return $tempString;
 		}
 	}
 
@@ -164,41 +154,38 @@ function LoadTopics($cat_id){
 
 	if(!$result)
 	{
-		echo 'The categories could not be displayed, please try again later.';
+		echo 'The topics for this category could not be displayed, please try again later.';
 	}
 	else
 	{
 		if(mysqli_num_rows($result) == 0)
 		{
-			echo 'No categories defined yet.';
+			echo 'No topics defined yet.';
 		}
 		else
 		{
 
-		//	echo '<table border="1"><table class="table table-hover table-dark">
-           $tempString.= "<thead>";
-           $tempString.= "<tr>";
-               $tempString.= "<th><span class="tableTitle">Topics</span></th>"
-               $tempString.= "<th><span class="tableTitle">Date posted</span></th>";
-           $tempString.= "</tr>";
-           $tempString.= "</thead>";
-	   $tempString.= "<tbody>";
+		$tempString.= '<table border="1"><table class="table table-hover table-dark">';
+           	$tempString.= "<thead>";
+           	$tempString.= "<tr>";
+                $tempString.= '<th><span class="tableTitle">Topics</span></th>';
+                $tempString.= '<th><span class="tableTitle">Date posted</span></th>';
+           	$tempString.= "</tr>";
+          	$tempString.= "</thead>";
+	        $tempString.= "<tbody>";
 
-	   while($row = mysqli_fetch_assoc($result)){
-           $tempString.= "<tr>";
-               $tempString.= '<td><a href="topic.php?id=' . $result['topic_id'] . '"><span class="categoryTitle">' . $result['topic_subject'] . '</span></a></td>';
-               $tempString.= '<td>' . $result['topic_date'] . '</td>';
-	       $tempString.= "</tr>";
-	   }
+		   while($row = mysqli_fetch_assoc($result)){
+		       $tempString.= '<tr>';
+		       $tempString.= '<td><a href="topic.php?id=' . $row['topic_id'] . '"><span class="categoryTitle">' . $row['topic_subject'] . '</span></a></td>';
+		       $tempString.= '<td>' . $row['topic_date'] . '</td>';
+		       $tempString.= "</tr>";
+		   }
 
-           $tempString.= " </tbody>";
-       $tempString.= "</table>";
+           	$tempString.= "</tbody>";
+       	        $tempString.= "</table>";
 			
-		
-		
-		
-                   
-			return $tempString;
+	
+		return $tempString;
 		}
 	}
 
@@ -208,55 +195,43 @@ function LoadPosts($topic_id){
 
 	$connection = dbConnection();
 
-	$sql = "SELECT * FROM posts WHERE topic_id = '$topic_id'";
+	$sql = "SELECT * FROM posts WHERE post_topic = '$topic_id'";
 
 	$result = mysqli_query($connection,$sql);
 
-	if(!$result)
-	{
+	if(!$result){
 		echo 'The posts could not be displayed, please try again later.';
 	}
-	else
-	{
+	else{
 		if(mysqli_num_rows($result) == 0)
 		{
 			echo 'No posts defined yet.';
 		}
-		else
-		{
-
-		//	echo '<table border="1">
-		//		<tr>
-			//	<th>Category</th>
-			/*	<th>Last topic</th>
-				</tr>';
-			 */
-			                     $tempString = "";
-                        $tempString.=   '<table class="table table-hover table-dark">';
-            $tempString.= '<thead>';
-           $tempString.=' <tr>';
-           $tempString.='     <th colspan="6"><span class="tableTitle">Categories</span></th>';
-           $tempString.=' </tr>';
-           $tempString.=' </thead>';
-           $tempString.=' <tbody>';
-
-			while($row = mysqli_fetch_assoc($result))
-			{
-
-
-
-           $tempString.= ' <tr>';
-               $tempString.= ' <td><a href="category.php?id=' . $row['post_id'] . '"><span class="categoryTitle">' . $row['post_content'] . '</span></a></td>';
-	   $tempString.= '  <td>' . $row['post_topic'] . '</td>';
-	   $tempString.= ' </tr>';
-
-
-
-
+		else{
+		
+		    $tempString = '<table class="table table-hover table-dark">';
+		    $tempString = '<thead>';
+		    $tempString = '<tr>';
+		    $tempString = '<th colspan="6"><span class="tableTitle">Replies</span></th>';
+		    $tempString = '</tr>';
+		    $tempString = '</thead>';
+		    $tempString = '<tbody>';
+			
+			while($row = mysqli_fetch_assoc($result)){
+			    $tempString = '<tr>';
+			    $tempString = '<td>' . $row['post_date'] . '</td>';
+			    $tempString = '<td>' . $row['post_content'] . '</span></a></td>';
+			    $tempString = '</tr>';
+			    $tempString = '<tr>';
+			    $tempString = '<td>' . $row['post_date'] . '</td>';
+			    $tempString = '<td>' . $row['post_content'] . '</span></a></td>';
+			    $tempString = '</tr>';
 			}
-		      $tempString.= ' </tbody>';
-       			$tempString.= '</table>';
-			return $tempString;
+			
+		    $tempString = '</tbody>';
+	            $tempString = '</table>';
+			
+		    return $tempString;
 		}
 	}
 
@@ -284,16 +259,21 @@ function CreateTopic($topic_subject, $cat_id){
         return true;
 }
 
-function CreatePosts(){
+function CreatePosts($post_content, $topic_id, $username){
+	
+	$connection = dbConnection();
+	
+	$post_by = "";
+	$sqlID = "SELECT * FROM users WHERE username = '$username'";
+	$idResult = $connection->query($sqlID); 
 
-	$connection = dbConnection(); 
+	while($row = $idResult->fetch_assoc()) {
+        	$post_by = $row['id'];
+    	}
 
-	$sqlPost = "INSERT INTO posts(post_content, post_date, post_topic, post_by) VALUES('$post_content', '$post_date', '$post_topic', '$post_by')"; 
-
+	$sqlPost = "INSERT INTO posts(post_content, post_topic, post_by) VALUES('$post_content', '$topic_id', '$post_by')"; 
 	$result = $connection->query($sqlPost); 
 
 	return true;	
-
-
 }
-	?>
+?>
