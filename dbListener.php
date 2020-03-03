@@ -64,19 +64,18 @@
 
 		case "CreateTopics":
                         echo "<br>in Create Topics";
-                        $response_msg = CreateTopics($request['topic_subject'], $request['topic_cat']);
+                        $response_msg = CreateTopics($request['topic_subject'], $request['cat_id']);
 			break;
 
 		case "LoadPosts":
                         echo "<br>in LoadPosts";
                         $response_msg = LoadPosts($request['topic_id']);
                         break;
-
-
-
-	
+		case "CreatePosts":
+                        echo "<br>in Create Posts";
+                        $response_msg = CreateTopics($request['post_content'], $request['topic_id'], $request['username']);
+			break;
 		}
-
 
 		echo $response_msg; 
 		return $response_msg; 
