@@ -224,24 +224,26 @@ function showDiv(divId, element) {
 function checkSearchFields(){
     let searchText_upper = document.getElementById('pokemon_search').value;
     let dropdown = document.getElementById("search_type");
-    let searchType_upper = dropdown.options[dropdown.selectedIndex].value;
+    let searchType = dropdown.options[dropdown.selectedIndex].value;
 
-    let searchType = searchType_upper.toLowerCase();
     let searchText = searchText_upper.toLowerCase();
 
     if (searchText !== ""){
         createSearch(searchText, searchType);
+
     }else{
         alert("Please fill in all required fields");
     }
 }
 
 function createSearch(searchText, searchType) {
+
     let httpReq = new XMLHttpRequest();
     httpReq.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
 
-            document.getElementById("search_results").innerHTML = this.responseText;
+            alert(this.responseText);
+            console.log(this.responseText + " " + this.responseType);
         }
     };
     httpReq.open("GET", "functions.php?type=Search&searchType=" + searchType + "&searchText=" + searchText);

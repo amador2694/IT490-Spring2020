@@ -59,7 +59,7 @@ session_start();
         <select id="search_type" class="form-margin-bottom mr-sm-2 form-control form-control-lg" onchange="showDiv('hidden_div', this)">
             <option value="" selected>Search by...</option>
             <option value="name">Name (Squirtle, Bulbasaur, etc.)</option>
-            <option value="pokedexNum">Pokedex Number (1, 13, 25, etc.)</option>
+            <option value="pokemonNum">Pokedex Number (1, 13, 25, etc.)</option>
             <option value="pokeType">Type (Fire, Water, Fairy, etc.)</option>
             <option value="ability">Ability (Flame Body, Magic Guard, etc.)</option>
         </select>
@@ -72,6 +72,7 @@ session_start();
 
     <div id="search_results">
         <table class="table table-hover table-dark">
+            <!--
             <thead>
             <tr>
                 <th colspan="6"><span class="tableTitle">Search Results</span></th>
@@ -79,11 +80,12 @@ session_start();
             </thead>
             <tbody>
             <tr>
-                <td><a href="pokemon.php?id=' . $row['poke_id'] . '"><span class="categoryTitle">' . $row['pokeName'] . '</span></a></td>
+                <td><a href="pokemon.php?name=' . $row['name'] . '"><span class="categoryTitle">' . $row['name'] . '</span></a></td>
             </tr>
             <tr>
             </tbody>
         </table>
+        -->
     </div>
 
 </div>

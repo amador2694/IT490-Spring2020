@@ -4,7 +4,7 @@ require_once('../rabbitmqphp_example/get_host_info.inc');
 require_once('../rabbitmqphp_example/rabbitMQLib.inc');
 
 session_start();
-
+$searchType = $_GET['searchType'];
 $type = $_GET["type"];
 //  determines what kind of data was sent via javascript.js
 switch ($type) {
@@ -90,37 +90,38 @@ switch ($type) {
     case "Search":
         $request = array();
         $request['type'] = "Search";
-        $searchType = $_GET['searchType'];
 
-        if ($searchType = "name"){
-            $request['name'] = $_GET['searchText'];
-            $request['pokedexNum'] = "na";
-            $request['pokeType'] = "na";
-            $request['ability'] = "na";
+        switch ($searchType){
+            case "name":
+                $request['name'] = $_GET['searchText'];
+                $request['pokemonNum'] = "na";
+                $request['pokeType'] = "na";
+                $request['ability'] = "na";
+                break;
 
-        }elseif ($searchType = "pokedexNum"){
-            $request['name'] = "na";
-            $request['pokedexNum'] = $_GET['searchText'];
-            $request['pokeType'] = "na";
-            $request['ability'] = "na";
+            case "pokemonNum":
+                $request['name'] = "na";
+                $request['pokemonNum'] = $_GET['searchText'];
+                $request['pokeType'] = "na";
+                $request['ability'] = "na";
+                break;
 
-        }elseif ($searchType = "pokeType"){
-            $request['name'] = "na";
-            $request['pokedexNum'] = "na";
-            $request['pokeType'] = $_GET['searchText'];
-            $request['ability'] = "na";
+            case "pokeType":
+                $request['name'] = "na";
+                $request['pokemonNum'] = "na";
+                $request['pokeType'] = $_GET['searchText'];
+                $request['ability'] = "na";
+                break;
 
-        }elseif ($searchType = "ability"){
-            $request['name'] = "na";
-            $request['pokedexNum'] = "na";
-            $request['pokeType'] = "na";
-            $request['ability'] = $_GET['searchText'];
-        }
-        $response = createClientRequest($request);
-        echo $response;
+            case "ability":
+                $request['name'] = "na";
+                $request['pokemonNum'] = "na";
+                $request['pokeType'] = "na";
+                $request['ability'] = $_GET['searchText'];
+                break;
+            }
+
         break;
-
-
 }
 //  This function will send a login request message to Db through RabbitMQ
 function login($username, $password)
