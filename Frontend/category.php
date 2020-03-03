@@ -21,10 +21,10 @@ $cat_id = $_GET['id'];
             <li class="nav-item">
                 <a class="nav-link" href="index.php">Home</a>
             </li>
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="search.php">Search</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" href="forum.php">Forums</a>
             </li>
             <li class="nav-item">
@@ -55,8 +55,7 @@ $cat_id = $_GET['id'];
 
 
 
-<?php
-echo '
+
 <div class="container">
     <div id="topicsTable">
         <table class="table table-hover table-dark">
@@ -76,8 +75,6 @@ echo '
     </div>
     <button type="button" id="registerButtonId" class="btn btn-outline-warning btn-lg" data-toggle="modal" data-target="#topicmodal"><i class="fas fa-edit"></i> Create a New Topic</button>
 </div>
-';
-?>
 
 
 

@@ -21,10 +21,10 @@ $topic_id = $_GET['id'];
             <li class="nav-item">
                 <a class="nav-link" href="index.php">Home</a>
             </li>
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="search.php">Search</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" href="forum.php">Forums</a>
             </li>
             <li class="nav-item">
@@ -59,13 +59,13 @@ $topic_id = $_GET['id'];
         <table class="table table-hover table-dark">
             <thead>
             <tr>
-                <th colspan="6"><span class="tableTitle">$row['topic_title']</span></th>
+                <th colspan="6"><span class="tableTitle">Title of Topic</span></th>
             </tr>
             </thead>
             <tbody>
             <tr>
-                <td>' . $row['post_date'] . '</td>
-                <td>' . $row['post_content'] . '</span></a></td>
+                <td>12-22-2020 1:35</td>
+                <td>Hey this is just some test content, does it look good?  Or nah?</span></a></td>
             </tr>
             <tr>
                 <td>' . $row['post_date'] . '</td>
@@ -78,7 +78,7 @@ $topic_id = $_GET['id'];
             </tbody>
         </table>
     </div>
-    <button type="button" id="registerButtonId" class="btn btn-outline-warning btn-lg" data-toggle="modal" data-target="#replymodal"><i class="fas fa-edit"></i>Reply to Post</button>
+    <button type="button" id="registerButtonId" class="btn btn-outline-warning btn-lg" data-toggle="modal" data-target="#replymodal"><i class="fas fa-edit"></i> Reply to Post</button>
 </div>
 
 
