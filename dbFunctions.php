@@ -138,7 +138,7 @@ function LoadCategories(){
 				
 		
            $tempString.= ' <tr>';
-               $tempString.= ' <td><a href="categories.php?id=' . $row['cat_id'] . '"><span class="categoryTitle">' . $row['cat_name'] . '</span></a></td>';
+               $tempString.= ' <td><a href="category.php?id=' . $row['cat_id'] . '"><span class="categoryTitle">' . $row['cat_name'] . '</span></a></td>';
 	   $tempString.= '  <td>' . $row['cat_description'] . '</td>';	          
 	   $tempString.= ' </tr>';
             
@@ -154,6 +154,132 @@ function LoadCategories(){
 
 }
 
+function LoadTopics($cat_id){
+
+	$connection = dbConnection();
+
+	$sql = "SELECT * FROM topics WHERE topic_cat = '$cat_id';"
+
+	$result = mysqli_query($connection,$sql);
+
+	if(!$result)
+	{
+		echo 'The categories could not be displayed, please try again later.';
+	}
+	else
+	{
+		if(mysqli_num_rows($result) == 0)
+		{
+			echo 'No categories defined yet.';
+		}
+		else
+		{
+
+		//	echo '<table border="1"><table class="table table-hover table-dark">
+           $tempString.= "<thead>";
+           $tempString.= "<tr>";
+               $tempString.= "<th><span class="tableTitle">Topics</span></th>"
+               $tempString.= "<th><span class="tableTitle">Date posted</span></th>";
+           $tempString.= "</tr>";
+           $tempString.= "</thead>";
+           $tempString.= "<tbody>";
+           $tempString.= "<tr>";
+               $tempString.= "<td><a href="topic.php?id=' . $row['topic_id'] . '"><span class="categoryTitle">' . $row['topic_subject'] . '</span></a></td>";
+               $tempString.= "<td>' . $row['topic_date'] . '</td>";
+           $tempString.= "</tr>";
+           $tempString.= " </tbody>";
+       $tempString.= "</table>";
+		//		<tr>
+			//	<th>Category</th>
+			/*	<th>Last topic</th>
+				</tr>';
+			 */
+			                     $tempString = "";
+                        $tempString.=   '<table class="table table-hover table-dark">';
+            $tempString.= '<thead>';
+           $tempString.=' <tr>';
+           $tempString.='     <th colspan="6"><span class="tableTitle">Categories</span></th>';
+           $tempString.=' </tr>';
+           $tempString.=' </thead>';
+           $tempString.=' <tbody>';
+
+			while($row = mysqli_fetch_assoc($result))
+			{
+
+
+
+          $tempString.= '<tr>';
+              $tempString.= ' <td><a href="topic.php?id=' . $row['topic_id'] . '"><span class="categoryTitle">' . $row['topic_subject'] . '</span></a></td>';
+               $tempString.= '<td>' . $row['topic_date'] . '</td>';
+           $tempString.= '</tr>';
+
+			}
+		      $tempString.= ' </tbody>';
+       			$tempString.= '</table>';
+			return $tempString;
+		}
+	}
+
+}
+
+function LoadPosts(){
+
+	$connection = dbConnection();
+
+	$sql = "SELECT * FROM posts";
+
+	$result = mysqli_query($connection,$sql);
+
+	if(!$result)
+	{
+		echo 'The posts could not be displayed, please try again later.';
+	}
+	else
+	{
+		if(mysqli_num_rows($result) == 0)
+		{
+			echo 'No posts defined yet.';
+		}
+		else
+		{
+
+		//	echo '<table border="1">
+		//		<tr>
+			//	<th>Category</th>
+			/*	<th>Last topic</th>
+				</tr>';
+			 */
+			                     $tempString = "";
+                        $tempString.=   '<table class="table table-hover table-dark">';
+            $tempString.= '<thead>';
+           $tempString.=' <tr>';
+           $tempString.='     <th colspan="6"><span class="tableTitle">Categories</span></th>';
+           $tempString.=' </tr>';
+           $tempString.=' </thead>';
+           $tempString.=' <tbody>';
+
+			while($row = mysqli_fetch_assoc($result))
+			{
+
+
+
+           $tempString.= ' <tr>';
+               $tempString.= ' <td><a href="category.php?id=' . $row['post_id'] . '"><span class="categoryTitle">' . $row['post_content'] . '</span></a></td>';
+	   $tempString.= '  <td>' . $row['post_topic'] . '</td>';
+	   $tempString.= ' </tr>';
+
+
+
+
+			}
+		      $tempString.= ' </tbody>';
+       			$tempString.= '</table>';
+			return $tempString;
+		}
+	}
+
+}
+
 function CreateCategories($cat_name, $cat_description){
 
 	$connection = dbConnection(); 
@@ -163,5 +289,29 @@ function CreateCategories($cat_name, $cat_description){
 	$result = $connection->query($sqlCategory); 
 
 	return true; 
+}
+
+function CreateTopic($topic_subject){
+
+        $connection = dbConnection();
+
+        $sqlCategory = "INSERT INTO topics(topic_subject) VALUES('$topic_subject')";
+
+        $result = $connection->query($sqlCategory);
+
+        return true;
+}
+
+function CreatePosts(){
+
+	$connection = dbConnection(); 
+
+	$sqlPost = "INSERT INTO posts(post_content, post_date, post_topic, post_by) VALUES('$post_content', '$post_date', '$post_topic', '$post_by')"; 
+
+	$result = $connection->query($sqlPost); 
+
+	return true;	
+
+
 }
 	?>

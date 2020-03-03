@@ -55,7 +55,25 @@
 		case "CreateCategories":
                         echo "<br>in Create Categories";
                         $response_msg = CreateCategories($request['cat_name'], $request['cat_description']);
+			break; 
+
+		case "LoadTopics":
+                        echo "<br>in LoadTopics";
+                        $response_msg = LoadTopics($request['cat_id']); 
+			break; 
+
+		case "CreateTopics":
+                        echo "<br>in Create Topics";
+                        $response_msg = CreateTopics($request['topic_subject'], $request['topic_cat'], $request['topic_by'], $request['topic_date']);
+			break;
+
+		case "LoadPosts":
+                        echo "<br>in LoadPosts";
+                        $response_msg = LoadPosts($request['post_id']);
                         break;
+
+
+
 	
 		}
 
