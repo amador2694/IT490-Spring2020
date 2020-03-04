@@ -300,4 +300,27 @@ function parseSearch($search_json){
 	   return $tempString; 
 }
 
+         <table class="table table-hover table-dark">
+             <thead>
+             <tr>
+                 <th><span class="tableTitle">Pokemon #1</span></th>
+                 <th><span class="tableTitle">Pokemon #2</span></th>
+                 <th><span class="tableTitle">Pokemon #3</span></th>
+                 <th><span class="tableTitle">Pokemon #4</span></th>
+                 <th><span class="tableTitle">Pokemon #5</span></th>
+                 <th><span class="tableTitle">Pokemon #6</span></th>
+                 </tr>
+             </thead>
+             <tbody>
+             <tr>
+                 <td>' .$row['pokemon_1']. '</td>
+                 <td>' .$row['pokemon_2']. '</td>
+                 <td>' .$row['pokemon_3']. '</td>
+                 <td>' .$row['pokemon_4']. '</td>
+                 <td>' .$row['pokemon_5']. '</td>
+                 <td>' .$row['pokemon_6']. '</td>
+             </tr>
+             </tbody>
+         </table>
+
 ?>
