@@ -154,7 +154,7 @@ function LoadCategories(){
 
 }
 
-/*function LoadTopics($cat_id){
+function LoadTopics($cat_id){
 
 	$connection = dbConnection();
 
@@ -208,7 +208,7 @@ function LoadPosts($topic_id){
 
 	$connection = dbConnection();
 
-	$sql = "SELECT * FROM posts WHERE topic_id = '$topic_id'";
+	$sql = "SELECT * FROM posts WHERE post_topic = '$topic_id'";
 
 	$result = mysqli_query($connection,$sql);
 
@@ -273,7 +273,7 @@ function CreateCategories($cat_name, $cat_description){
 	return true; 
 }
 
-function CreateTopic($topic_subject, $cat_id){
+function CreateTopics($topic_subject, $cat_id){
 
         $connection = dbConnection();
 
@@ -284,11 +284,19 @@ function CreateTopic($topic_subject, $cat_id){
         return true;
 }
 
-function CreatePosts(){
+function CreatePosts($post_content, $topic_id, $username){
 
 	$connection = dbConnection(); 
 
-	$sqlPost = "INSERT INTO posts(post_content, post_date, post_topic, post_by) VALUES('$post_content', '$post_date', '$post_topic', '$post_by')"; 
+	$post_by = ""; 
+	$sqlID = "SELECT * FROM users WHERE username = '$username'"; 
+	$idResult = $connection->query($sqlID); 
+
+	while($row = $idResult->fetch_assoc()) {
+		$post_by = $row['id'];
+	}
+
+	$sqlPost = "INSERT INTO posts(post_content, post_topic, post_by) VALUES('$post_content', '$post_topic', '$post_by')"; 
 
 	$result = $connection->query($sqlPost); 
 
