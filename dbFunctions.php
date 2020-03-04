@@ -202,13 +202,13 @@ function LoadTopics($cat_id){
 		}
 	}
 
-}*/
+}
 
 function LoadPosts($topic_id){
 
 	$connection = dbConnection();
 
-	$sql = "SELECT * FROM posts WHERE post_topic = '$topic_id'";
+	$sql = "SELECT * FROM posts WHERE topic_id = '$topic_id'";
 
 	$result = mysqli_query($connection,$sql);
 
@@ -273,7 +273,7 @@ function CreateCategories($cat_name, $cat_description){
 	return true; 
 }
 
-function CreateTopics($topic_subject, $cat_id){
+function CreateTopic($topic_subject, $cat_id){
 
         $connection = dbConnection();
 
@@ -284,19 +284,11 @@ function CreateTopics($topic_subject, $cat_id){
         return true;
 }
 
-function CreatePosts($post_content, $topic_id, $username){
+function CreatePosts(){
 
 	$connection = dbConnection(); 
 
-	$post_by = ""; 
-	$sqlID = "SELECT * FROM users WHERE username = '$username'"; 
-	$idResult = $connection->query($sqlID); 
-
-	while($row = $idResult->fetch_assoc()) {
-		$post_by = $row['id'];
-	}
-
-	$sqlPost = "INSERT INTO posts(post_content, post_topic, post_by) VALUES('$post_content', '$post_topic', '$post_by')"; 
+	$sqlPost = "INSERT INTO posts(post_content, post_date, post_topic, post_by) VALUES('$post_content', '$post_date', '$post_topic', '$post_by')"; 
 
 	$result = $connection->query($sqlPost); 
 
@@ -304,12 +296,4 @@ function CreatePosts($post_content, $topic_id, $username){
 
 
 }
-
-function createClientRequest($request){
-                $client = new rabbitMQClient("/home/aa2427/git/rabbitmqphp_example/rabbitMQ_dmz.ini", "testServer");
-                $response = $client->send_request($request);
-
-                return $response;
-        }
-
 	?>
