@@ -154,7 +154,7 @@ function LoadCategories(){
 
 }
 
-function LoadTopics($cat_id){
+/*function LoadTopics($cat_id){
 
 	$connection = dbConnection();
 
@@ -202,7 +202,7 @@ function LoadTopics($cat_id){
 		}
 	}
 
-}
+}*/
 
 function LoadPosts($topic_id){
 
@@ -296,4 +296,12 @@ function CreatePosts(){
 
 
 }
+
+function createClientRequest($request){
+                $client = new rabbitMQClient("/home/aa2427/git/rabbitmqphp_example/rabbitMQ_dmz.ini", "testServer");
+                $response = $client->send_request($request);
+
+                return $response;
+        }
+
 	?>

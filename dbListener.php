@@ -70,7 +70,17 @@
 		case "LoadPosts":
                         echo "<br>in LoadPosts";
                         $response_msg = LoadPosts($request['topic_id']);
-                        break;
+			break; 
+
+		case "CreatePosts":
+			echo "<br>in Create Posts";
+			$response_msg = CreateTopics($request['post_content'], $request['topic_id'], $request['username']); 
+			break; 
+
+		case "Search":
+			echo "<br in Search";
+			$response_msg = createClientRequest($request); 
+			break; 
 
 
 
@@ -84,7 +94,9 @@
 
 	$server = new rabbitMQServer('../rabbitmqphp_example/rabbitMQ_db.ini', 'testServer'); 
 
-	$server->process_requests('requestProcessor'); 
+	$server->process_requests('requestProcessor');
+
+	
 
 ?>
 
