@@ -124,6 +124,70 @@ switch ($type) {
                 $request['ability'] = $_GET['searchText'];
                 break;
             }
+
+        $response_json = createClientRequest($request);
+        $response = json_decode($response_json);
+
+        if ($response -> speed){
+
+            $tempString .= '<h1 class="text-center">$response -> pokemonName</h1>';
+            $tempString .= '<table class="table table-hover table-dark">';
+            $tempString .= '<thead>';
+            $tempString .= '<tr>';
+                $tempString .= '<th><span class="tableTitle">HP</span></th>';
+                $tempString .= '<th><span class="tableTitle">Attack</span></th>';
+                $tempString .= '<th><span class="tableTitle">Defense</span></th>';
+                $tempString .= '<th><span class="tableTitle">Special Attack</span></th>';
+                $tempString .= '<th><span class="tableTitle">Special Defense</span></th>';
+                $tempString .= '<th><span class="tableTitle">Speed</span></th>';
+            $tempString .= '</tr>';
+            $tempString .= '</thead>';
+            $tempString .= '<tbody>';
+            $tempString .= '<tr>';
+                $tempString .= '<td>$response -> hp</td>';
+                $tempString .= '<td>$response -> atk</td>';
+                $tempString .= '<td>$response -> def</td>';
+                $tempString .= '<td>$response -> spAtk</td>';
+                $tempString .= '<td>$response -> spDef</td>';
+                $tempString .= '<td>$response -> speed</td>';
+            $tempString .= '</tr>';
+            $tempString .= '</tbody>';
+        $tempString .= '</table>';
+
+        }else {
+
+            $pokemonList = $response->pokemonNames;
+
+            $tempString = "";
+            $tempString .= '<table class="table table-hover table-dark">';
+            $tempString .= "<thead>";
+            $tempString .= " <tr>";
+            $tempString .= '<th colspan="6"><span class="tableTitle">Search Results</span></th>';
+            $tempString .= "</tr>";
+            $tempString .= "</thead>";
+            $tempString .= "<tbody>";
+            $tempString .= "<tr>";
+            foreach ($pokemonList as $name) {
+                $tempString .= '<td><a href="pokemon.php?name=' . $name . '"><span class="categoryTitle">' . $name . '</span></a></td>';
+                $tempString .= "  </tr>";
+                $tempString .= " <tr>";
+            }
+            $tempString .= " </tbody>";
+            $tempString .= " </table>";
+        }
+        echo $tempString;
+        break;
+
+    case "SinglePokeSearch":
+        $request = array();
+
+        $request['type'] = "Search";
+        $request['name'] = $_GET['pokemonName'];
+        $request['pokemonNum'] = "na";
+        $request['pokeType'] = "na";
+        $request['ability'] = "na";
+
+
         $response = createClientRequest($request);
         echo $response;
         break;

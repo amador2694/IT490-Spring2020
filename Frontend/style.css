@@ -5,6 +5,7 @@ html, body{
   margin: 0;
   padding: 0;
   background-color: #202021;
+  color: white;
 }
 #registerButtonId{
   margin: 0 auto;
@@ -98,7 +99,7 @@ table{
 .tableTitle{
   font-size: 1.5rem;
   font-weight: bolder;
-  letter-spacing: .4rem;
+  letter-spacing: .3rem;
 }
 thead{
   text-align: center;

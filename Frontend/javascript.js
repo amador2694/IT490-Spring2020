@@ -243,8 +243,24 @@ function createSearch(searchText, searchType) {
         if (this.readyState == 4 && this.status == 200) {
 
             document.getElementById("search_results").innerHTML = this.responseText;
+
         }
     };
     httpReq.open("GET", "functions.php?type=Search&searchType=" + searchType + "&searchText=" + searchText);
     httpReq.send(null);
 }
+
+function singlePokeSearch() {
+
+    let httpReq = new XMLHttpRequest();
+    httpReq.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+
+            document.getElementById("pokemon_results").innerHTML = this.responseText;
+            alert(this.responseText);
+        }
+    };
+    httpReq.open("GET", "functions.php?type=SinglePokeSearch&pokemonName=" + pokeName);
+    httpReq.send(null);
+}
+

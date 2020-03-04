@@ -1,6 +1,7 @@
 <?php
 session_start();
 //$_SESSION['username'] = "Bryan";
+$name = $_GET['name'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,7 +12,7 @@ session_start();
     <link rel="stylesheet" type="text/css" href="style.css">
     <title>Search Our Database</title>
 </head>
-<body>
+<body onload="singlePokeSearch()">
 <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -46,7 +47,7 @@ session_start();
                 </div>
               </li>";
             }else {
-                echo "<button type=\"button\" class=\"btn btn-primary btn-lg\" data-toggle=\"modal\" data-target=\"#loginmodal\">Login In</button>";
+                echo "<button type=\"button\" class=\"btn btn-primary btn-lg\" data-toggle=\"modal\" data-target=\"#loginmodal\"><i class=\"fas fa-user-alt\"></i> Login In</button>";
             }
             ?>
         </ul>
@@ -54,36 +55,10 @@ session_start();
 </nav>
 
 <div style="margin-top: 30px;" class="container">
-    <form class="form-padding search-group text-center">
-        <h3>First, select the parameter you would like to search by:</h3>
-        <select id="search_type" class="form-margin-bottom mr-sm-2 form-control form-control-lg" onchange="showDiv('hidden_div', this)">
-            <option value="" selected>Search by...</option>
-            <option value="name">Name (Squirtle, Bulbasaur, etc.)</option>
-            <option value="pokedexNum">Pokedex Number (1, 13, 25, etc.)</option>
-            <option value="pokeType">Type (Fire, Water, Fairy, etc.)</option>
-            <option value="ability">Ability (Flame Body, Magic Guard, etc.)</option>
-        </select>
-        <div id="hidden_div" class="form-margin-bottom">
-            <label class="lead" for="pokemon_search"><h2>Now, search using your selected parameter below:</h2></label>
-            <input type="text" class="form-control form-control-lg" id="pokemon_search" placeholder="Input your search criteria here">
-            <button style="margin-top: 10px;" class="btn btn-lg btn-outline-warning" type="button" onclick="checkSearchFields()">Search</button>
-        </div>
-    </form>
 
-    <div id="search_results">
-        <table class="table table-hover table-dark">
-            <thead>
-            <tr>
-                <th colspan="6"><span class="tableTitle">Search Results</span></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td><a href="pokemon.php?id=' . $row['poke_id'] . '"><span class="categoryTitle">' . $row['pokeName'] . '</span></a></td>
-            </tr>
-            <tr>
-            </tbody>
-        </table>
+    <div id="pokemon_results">
+
+
     </div>
 
 </div>
@@ -124,6 +99,6 @@ session_start();
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/761d96f64b.js" crossorigin="anonymous"></script>
-<script src="javascript.js"></script>
+<script src="javascript.js">let pokeName = <?php echo $name?>;</script>
 </body>
 </html>
