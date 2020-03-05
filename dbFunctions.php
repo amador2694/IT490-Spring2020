@@ -90,8 +90,12 @@ function register($username, $email, $password, $firstname, $lastname){
 //	$h_password = hashPassword($password, $salt);
 
 	$newuser_query = "INSERT INTO users (username, email, firstname, lastname, password) VALUES ('$username', '$email', '$firstname', '$lastname', '$password')";
+	
+	$leaderboard_query = "INSERT INTO leaderboard(username, wins, losses) 
+		VALUES('$username', 0, 0)"; 
 
 	$result = $connection->query($newuser_query);
+	$result2 = $connection->query($leaderboard_query); 
 
 	return true;
 }
@@ -277,6 +281,9 @@ function CreatePosts($post_content, $topic_id, $username){
 }
 
 function parseSearch($search_json){
+	        $connection = dbConnection();
+
+	
 	$pokemonReturned = json_decode($search_json);
 	$pokemonList = $pokemonReturned -> pokemonNames;
 
@@ -300,4 +307,99 @@ function parseSearch($search_json){
 	   return $tempString; 
 }
 
+function getPokemon($username){
+	        $connection = dbConnection();
+
+
+	$poke_sql = "SELECT * from users WHERE username = '$username'"; 
+
+	$resultRaw = mysqli_query($connection, $poke_sql);
+	$result = mysqli_fetch_assoc($resultRaw);
+	var_dump($result); 
+	$pokemon_1 = $result['pokemon_1'];
+	$pokemon_2 = $result['pokemon_2'];
+	$pokemon_3 = $result['pokemon_3'];
+	$pokemon_4 = $result['pokemon_4'];
+	$pokemon_5 = $result['pokemon_5'];
+	$pokemon_6 = $result['pokemon_6'];	
+
+	$tempString= ""; 
+         $tempString.= '<table class="table table-hover table-dark">';
+            $tempString.= " <thead>";
+            $tempString.= " <tr>";
+               $tempString.= '  <th><span class="tableTitle">Pokemon #1</span></th>';
+               $tempString.= ' <th><span class="tableTitle">Pokemon #2</span></th>';
+               $tempString.= ' <th><span class="tableTitle">Pokemon #3</span></th>';
+               $tempString.= ' <th><span class="tableTitle">Pokemon #4</span></th>';
+               $tempString.= ' <th><span class="tableTitle">Pokemon #5</span></th>';
+               $tempString.= ' <th><span class="tableTitle">Pokemon #6</span></th>';
+                $tempString.= " </tr>";
+            $tempString.= "</thead>";
+            $tempString.= "<tbody>";
+            $tempString.= " <tr>";
+               $tempString.= ' <td>' .$pokemon_1. '</td>';
+               $tempString.= ' <td>' .$pokemon_2. '</td>';
+               $tempString.= ' <td>' .$pokemon_3. '</td>';
+               $tempString.= ' <td>' .$pokemon_4. '</td>';
+               $tempString.= ' <td>' .$pokemon_5. '</td>';
+               $tempString.= ' <td>' .$pokemon_6. '</td>';
+            $tempString.= "</tr>";
+            $tempString.= "</tbody>";
+	    $tempString.= "</table>"; 
+	    return $tempString; 
+}
+
+function addPokemon($username, $pokemonName){
+	$connection = dbConnection(); 
+
+	$sql = "Select * FROM users WHERE username = '$username'"; 
+
+	$resultRaw = mysqli_query($connection, $sql);
+        $result = mysqli_fetch_assoc($resultRaw);
+	var_dump($pokemonName);
+	if($result['pokemon_1' ]){
+		if($result['pokemon_2']){
+			if($result['pokemon_3']){
+				if($result['pokemon_4']){
+					if($result['pokemon_5']){
+						if($result['pokemon_6']){
+							return false;
+						}else{
+							$sql =" UPDATE users SET pokemon_6 = '$pokemonName' WHERE username = '$username'";
+
+							
+						} 
+					}else{
+						$sql = "UPDATE users SET pokemon_5 = '$pokemonName' WHERE username = '$username'";
+
+						
+					}
+				}else{
+					$sql = "UPDATE users SET pokemon_4 = '$pokemonName' WHERE username = '$username'";
+
+					
+				}
+			}else{
+				$sql = "UPDATE users SET pokemon_3 = 'clefairy' WHERE username = 'bob'";
+
+				
+			}
+			
+		}else{
+			$sql = "UPDATE users SET pokemon_2 = '$pokemonName' WHERE username = '$username'";
+
+			
+		}
+
+	
+	
+	}else{
+		$sql = "UPDATE users SET pokemon_1 = '$pokemonName' WHERE username = '$username'";
+
+ 
+		 
+	}
+
+	return true; 
+}
 ?>

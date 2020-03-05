@@ -79,10 +79,18 @@
 			$search_json =createClientRequest($request);
 			$response_msg = parseSearch($search_json);
 			break; 
+		 
+		case "LoadPokemon":
+			$response_msg = getPokemon($request['username']); 
+			break;
+
+		case "AddPokemon":
+			$response_msg = addPokemon($request['username'], $request['pokemonName']); 
+			break; 	
 		}
 
 
-		echo $response_msg;
+		//$response_msg);
 		return $response_msg;
 	}
 
