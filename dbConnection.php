@@ -13,7 +13,7 @@
 			echo "Error connecting to database: ".$connection->connect_errno.PHP_EOL; 
 			exit(1); 
 			}
-			echo "Connection made to database".PHP_EOL; 
+//			echo "Connection made to database".PHP_EOL; 
 			return $connection; 
 		} 
 		
