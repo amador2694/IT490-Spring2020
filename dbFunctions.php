@@ -33,7 +33,9 @@
 				//	}
 			//	}
 		}
-		return true;
+		$response = true;
+		return $response;
+		var_dump($response);
 		}
 
 
@@ -146,7 +148,7 @@ function LoadCategories(){
 		    return $tempString;
 		}
 	}
-
+    
 }
 
 function LoadTopics($cat_id){
@@ -169,7 +171,7 @@ function LoadTopics($cat_id){
 		}
 		else
 		{
-
+		$tempString = "";
 		$tempString.= '<table border="1"><table class="table table-hover table-dark">';
            	$tempString.= "<thead>";
            	$tempString.= "<tr>";
@@ -194,6 +196,7 @@ function LoadTopics($cat_id){
 		}
 	}
 
+    
 }
 
 function LoadPosts($topic_id){
@@ -237,7 +240,6 @@ function LoadPosts($topic_id){
 		    return $tempString;
 		}
 	}
-
 }
 
 function CreateCategories($cat_name, $cat_description){
@@ -285,9 +287,10 @@ function parseSearch($search_json){
 
 	
 	$pokemonReturned = json_decode($search_json);
-	$pokemonList = $pokemonReturned -> pokemonNames;
+	$pokemonList = $pokemonReturned -> pokemonName;
 
-	$tempString = ""; 
+	$tempString = "";
+	$tempString .= '<table class="table table-hover table-dark search-results>"';
 	$tempString.="	<thead>";
           $tempString.="  <tr>";
             $tempString.=' <th colspan="6"><span class="tableTitle">Search Results</span></th>';
@@ -303,8 +306,8 @@ function parseSearch($search_json){
 	      $tempString.=" <tr>";
 		}
            $tempString.=" </tbody>";
-	   $tempString.=" </table>"; 
-	   return $tempString; 
+	   $tempString.=" </table>";
+	   return $tempString;
 }
 
 
@@ -418,10 +421,10 @@ function battle($username_1, $username_2){
         $resultRaw = mysqli_query($connection, $sql2);
         $username_2 = mysqli_fetch_assoc($resultRaw);
 
-	$request = [];
+	$request = array();
 	$request['type'] = 'Battle';
-	$request['username_1'] = [$username_1]; 
-	$request['username_2'] = [$username_2];
+	$request['username_1'] = $username_1;
+	$request['username_2'] = $username_2;
 
 	return $request; 	
 }

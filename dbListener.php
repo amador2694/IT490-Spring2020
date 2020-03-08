@@ -11,10 +11,11 @@
 	ini_set('log_errors', 'on');
 
 	function requestProcessor($request){
-	/*	echo "received request".PHP_EOL;
+		echo "received request".PHP_EOL;
 		echo $request['type'];
 		var_dump($request);
-	 */
+		$response_msg = "";
+
 		if(!isset($request['type'])){
 			return array('message'=>"ERROR: Message not found");
 		}
@@ -61,7 +62,7 @@
                         $response_msg = LoadTopics($request['cat_id']);
 			break;
 
-		case "CreateTopics":
+		case "CreateTopic":
                         echo "<br>in Create Topics";
                         $response_msg = CreateTopics($request['topic_subject'], $request['cat_id']);
 			break;
@@ -76,9 +77,8 @@
 			break; 
 		case "Search": 
 		//	echo "<br>in Search"; 
-			$search_json =createClientRequest($request);
-			$response_msg = parseSearch($search_json);
-			break; 
+			$response_msg =createClientRequest($request);
+			break;
 		 
 		case "LoadPokemon":
 			$response_msg = getPokemon($request['username']); 
@@ -101,16 +101,23 @@
 			break; 
 
 		case "LoadLeaderboard":
-			echo "find me bitch";
+
 			$response_msg = loadLeaderboard();
-		       echo "loader done";	
-			$response_msg = "test"; 
-			break; 
 
 
-		var_dump($response_msg);
-		return $response_msg;
+			break;
+
+		case "test":
+			echo "about to rtn";
+			$response_msg = "in case";
+			break;
+
+
+
+		echo $response_msg;
+		//return $response_msg;
 		}
+		return $response_msg;
 	}
 
 	$server = new rabbitMQServer('../rabbitmqphp_example/rabbitMQ_db.ini', 'testServer');
@@ -118,7 +125,7 @@
 	$server->process_requests('requestProcessor');
 
 	function createClientRequest($request){
-   		 $client = new rabbitMQClient("../rabbitmqphp_example/rabbitMQ_dmz.ini", "testServer");
+   		 $client = new rabbitMQClient("/home/aa2427/git/rabbitmqphp_example/rabbitMQ_dmz.ini", "testServer");
    	 $response = $client->send_request($request);
 
     	return $response;
