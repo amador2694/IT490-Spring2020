@@ -97,6 +97,7 @@ function register($username, $email, $password, $firstname, $lastname){
 		VALUES('$username', 0, 0)"; 
 
 	$result = $connection->query($newuser_query);
+	var_dump($result);
 	$result2 = $connection->query($leaderboard_query); 
 
 	return true;
@@ -206,6 +207,13 @@ function LoadPosts($topic_id){
 	$sql = "SELECT * FROM posts WHERE post_topic = '$topic_id'";
 
 	$result = mysqli_query($connection,$sql);
+	$resultArray = mysqli_fetch_assoc($result);
+	$userid = $resultArray['post_by'];
+
+	$sqlusername = "SELECT username FROM users WHERE id = '$userid'";
+	$results = $connection->query($sqlusername);
+	$userAssoc = mysqli_fetch_assoc($results);
+	$username = $userAssoc['username'];
 
 	if(!$result){
 		echo 'The posts could not be displayed, please try again later.';
@@ -226,12 +234,8 @@ function LoadPosts($topic_id){
 		    $tempString.= '<tbody>';
 			while($row = mysqli_fetch_assoc($result)){
 			    $tempString.= '<tr>';
-			    $tempString.= '<td>' . $row['post_date'] . '</td>';
-			    $tempString.= '<td>' . $row['post_content'] . '</span></a></td>';
-			    $tempString.= '</tr>';
-			    $tempString.= '<tr>';
-			    $tempString.= '<td>' . $row['post_date'] . '</td>';
-			    $tempString.= '<td>' . $row['post_content'] . '</span></a></td>';
+			    $tempString.= '<td>Posted by: ' . $username . '</td>';
+			    $tempString.= '<td>' . $row['post_content'] . '</td>';
 			    $tempString.= '</tr>';
 			}
 		    $tempString.= '</tbody>';
@@ -253,14 +257,19 @@ function CreateCategories($cat_name, $cat_description){
 	return true;
 }
 
-function CreateTopic($topic_subject, $cat_id){
+function CreateTopics($topic_subject, $cat_id, $username){
 
         $connection = dbConnection();
 
-        $sqlCategory = "INSERT INTO topics(topic_subject, topic_cat) VALUES('$topic_subject', '$cat_id')";
+		$sqluserid = "SELECT id FROM users WHERE username = '$username'";
+		$results = $connection->query($sqluserid);
+		$userid = mysqli_fetch_array($results);
+
+
+        $sqlCategory = "INSERT INTO topics(topic_subject, topic_cat, topic_by) VALUES('$topic_subject', '$cat_id', '$userid[0]')";
 
         $result = $connection->query($sqlCategory);
-
+		var_dump($result);
         return true;
 }
 
@@ -268,15 +277,12 @@ function CreatePosts($post_content, $topic_id, $username){
 
 	$connection = dbConnection();
 
-	$post_by = "";
-	$sqlID = "SELECT * FROM users WHERE username = '$username'";
-	$idResult = $connection->query($sqlID);
+	$sqluserid = "SELECT id FROM users WHERE username = '$username'";
+	$results = $connection->query($sqluserid);
+	$userid = mysqli_fetch_array($results);
 
-	while($row = $idResult->fetch_assoc()) {
-        	$post_by = $row['id'];
-    	}
 
-	$sqlPost = "INSERT INTO posts(post_content, post_topic, post_by) VALUES('$post_content', '$topic_id', '$post_by')";
+	$sqlPost = "INSERT INTO posts(post_content, post_topic, post_by) VALUES('$post_content', '$topic_id', '$userid[0]')";
 	$result = $connection->query($sqlPost);
 
 	return true;
@@ -340,7 +346,7 @@ function getPokemon($username){
                 $tempString.= " </tr>";
             $tempString.= "</thead>";
             $tempString.= "<tbody>";
-            $tempString.= " <tr>";
+            $tempString.= " <tr class='text-center'>";
                $tempString.= ' <td>' .$pokemon_1. '</td>';
                $tempString.= ' <td>' .$pokemon_2. '</td>';
                $tempString.= ' <td>' .$pokemon_3. '</td>';
@@ -432,7 +438,7 @@ function battle($username_1, $username_2){
 function leaderboard($user1, $user2, $u1R, $u2R){ 
 	$connection = dbConnection();
 
-	if($u1R = 0){
+	if($u1R == 0){
 		$sql = "UPDATE leaderboard SET losses = losses +1 WHERE username = '$user1'";
 		$sql2 = "UPDATE leaderboard SET wins = wins +1 WHERE username = '$user2'";
 
@@ -456,7 +462,7 @@ function leaderboard($user1, $user2, $u1R, $u2R){
 function loadLeaderboard(){
 	$connection = dbConnection(); 
 
-	$sql = "SELECT * FROM leaderboard"; 
+	$sql = "SELECT * FROM leaderboard ORDER BY wins DESC";
 	
 
 	$result = mysqli_query($connection,$sql);
@@ -478,19 +484,22 @@ function loadLeaderboard(){
 			$tempString.= '<table class="table table-hover table-dark">';
            $tempString.= " <thead>";
            $tempString.= " <tr>";
+			$tempString.= ' <th><span class="tableTitle">Rank</span></th>';
               $tempString.= ' <th><span class="tableTitle">Username</span></th>';
                $tempString.= '<th><span class="tableTitle">Wins</span></th>';
                $tempString.= '<th><span class="tableTitle">Losses</span></th>';	           $tempString.= '</tr>';
            $tempString.= '</thead>';
 	       $tempString.= '<tbody>';
-	       while($row = mysqli_fetch_assoc($result)){ 
-		       
+			$count = 1;
+	       while($row = mysqli_fetch_assoc($result)){
 
-           $tempString.= '<tr class="text-center">';
+	       	   $tempString.= '<tr class="text-center">';
+			   $tempString.= '<td>' . $count. '</td>';
                $tempString.= '<td>' . $row['username']. '</td>';
                $tempString.= '<td>' . $row['wins']. '</td>';
                $tempString.= '<td>' . $row['losses']. '</td>';
-	       $tempString.= " </tr>";
+               $tempString.= " </tr>";
+			   $count++;
 	}
            $tempString.= "</tbody>";
        $tempString.= "</table>";
